@@ -15,5 +15,5 @@ exports.open = function(args, success, error) {
       error();
     }
   }
-  exec(defaultSuccess, defaultError, "open", "open", [argsArray]); 
+  exec(defaultSuccess, defaultError, "BridgeOpen", "open", [argsArray]); 
 };
