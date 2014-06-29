@@ -12,7 +12,7 @@
 
   <!-- www -->
   <js-module name="Open" src="www/BridgeOpen.js">
-    <clobbers target="cordova.plugins.bridge.open"/>
+    <clobbers target="cordova.plugins.bridge"/>
   </js-module>
 
   <!-- android -->
