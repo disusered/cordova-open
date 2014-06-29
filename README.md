@@ -6,7 +6,7 @@ Open documents with compatible applications installed on the user's device.
 ## Install
 
 ```bash
-$
+$ cordova plugin add https://github.com/cordova-bridge/open
 ```
 
 ## Usage
@@ -14,18 +14,43 @@ $
 The plugin exposes the following methods:
 
 ```javascript
-console.log('Hello World');
+cordova.plugins.bridge.open(file, success, error)
 ```
 
-## Example usage
+#### Parameters:
+
+* __file:__ A string representing a local URI
+* __success:__ Optional success callback
+* __error:__ Optional error callback
+
+## Example
+
+#### Default usage
 
 ```javascript
-console.log('Hello World');
+cordova.plugins.bridge.open('cdv://path/to/some/file.mp4');
+```
+
+#### With optional callback parameters
+
+```javascript
+var bridgeOpen = cordova.plugins.bridge.open;
+
+function success() {
+  console.log('bridge.open success');
+}
+
+function error() {
+  console.log('bridge.open error');
+}
+
+bridgeOpen('cdv://path/to/some/file.mp4', success, error);
 ```
 
 ## Todo
 
-- Everything
+- Open files on Android
+- Open files on iOS
 
 ## Links
 
