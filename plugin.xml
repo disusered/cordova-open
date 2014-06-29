@@ -18,7 +18,7 @@
   <!-- android -->
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
-      <feature name="Open">
+      <feature name="BridgeOpen">
         <param name="android-package" value="com.bridge.open.BridgeOpen"/>
       </feature>
     </config-file>
