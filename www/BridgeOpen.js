@@ -4,8 +4,8 @@ var exec = require('cordova/exec');
  * open
  *
  * @param {String} args File URI
- * @param {Function} success Optional success callback
- * @param {Function} error Optional error callback.
+ * @param {Function} [success] Call on success
+ * @param {Function} [error] Call on error
  */
 exports.open = function(args, success, error) {
   if (!args || arguments.length === 0) return;
