@@ -1,2 +1,28 @@
-<?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.bridge.open" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"><name>open</name><js-module name="open" src="www/open.js"><clobbers target="cordova.plugins.open" /></js-module><platform name="android"><config-file parent="/*" target="res/xml/config.xml"><feature name="open"><param name="android-package" value="com.bridge.open.open" /></feature></config-file><config-file parent="/*" target="AndroidManifest.xml"></config-file><source-file src="src/android/open.java" target-dir="src/com/bridge/open/open" /></platform></plugin>
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.bridge.open"
+    version="0.0.1">
+    <name>Open</name>
+    <description>Open documents with compatible applications installed on the user's device.</description>
+    <license>GPLv2</license>
+    <keywords>cordova,file,open,intent</keywords>
+    <repo>https://github.com/cordova-bridge/open</repo>
+    <issue>https://github.com/cordova-bridge/open/issues</issue>
+
+  <!-- www -->
+  <js-module name="Open" src="www/BridgeOpen.js">
+    <clobbers target="cordova.plugins.bridge.open"/>
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="Open">
+        <param name="android-package" value="com.bridge.open.BridgeOpen"/>
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml"/>
+    <source-file src="src/android/BridgeOpen.java" target-dir="src/com/bridge/open/BridgeOpen"/>
+  </platform>
+</plugin>
