@@ -11,7 +11,7 @@
     <issue>https://github.com/cordova-bridge/open/issues</issue>
 
   <!-- www -->
-  <js-module name="Open" src="www/BridgeOpen.js">
+  <js-module name="Open" src="www/bridge.open.js">
     <clobbers target="cordova.plugins.bridge"/>
   </js-module>
 
