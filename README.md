@@ -60,3 +60,5 @@ bridgeOpen('cdv://path/to/some/file.mp4', success, error);
 - http://chrisdell.info/blog/writing-ios-cordova-plugin-pure-swift/
 - http://docs.phonegap.com/en/3.5.0/plugin_ref_plugman.md.html#Using%20Plugman%20to%20Manage%20Plugins
 - http://docs.phonegap.com/en/3.5.0/guide_hybrid_plugins_index.md.html#Plugin%20Development%20Guide
+- http://docs.phonegap.com/en/3.5.0/guide_platforms_android_plugin.md.html#Android%20Plugins
+- http://docs.phonegap.com/en/3.5.0/guide_platforms_ios_plugin.md.html#iOS%20Plugins
