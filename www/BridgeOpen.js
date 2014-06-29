@@ -11,15 +11,13 @@ exports.open = function(args, success, error) {
   if (!args || arguments.length === 0) return;
 
   function defaultSuccess() {
-    if (typeof success === 'function') {
-      success();
-    }
+    // invoke optional callback
+    if (typeof success === 'function') success();
   }
 
   function defaultError() {
-    if (typeof error === 'function') {
-      error();
-    }
+    // invoke optional callback
+    if (typeof error === 'function') error();
   }
   exec(defaultSuccess, defaultError, "BridgeOpen", "open", [args]); 
 };
