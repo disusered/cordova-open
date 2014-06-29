@@ -2,6 +2,7 @@ var exec = require('cordova/exec');
 
 /**
  * open
+ * Open documents with compatible apps
  *
  * @param {String} args File URI
  * @param {Function} [success] Call on success
@@ -10,14 +11,14 @@ var exec = require('cordova/exec');
 exports.open = function(args, success, error) {
   if (!args || arguments.length === 0) return;
 
-  function defaultSuccess() {
+  function onSuccess() {
     // invoke optional callback
     if (typeof success === 'function') success();
   }
 
-  function defaultError() {
+  function onError() {
     // invoke optional callback
     if (typeof error === 'function') error();
   }
-  exec(defaultSuccess, defaultError, "BridgeOpen", "open", [args]); 
+  exec(onSuccess, onError, "BridgeOpen", "open", [args]);
 };
