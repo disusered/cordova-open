@@ -12,21 +12,23 @@ import org.json.JSONObject;
  */
 public class Open extends CordovaPlugin {
 
-    @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("open")) {
-            String path = args.getString(0);
-            this.chooseIntent(path, callbackContext);
-            return true;
-        }
-        return false;
-    }
+  public static final String OPEN_ACTION = "open";
 
-    private void chooseIntent(String path, CallbackContext callbackContext) {
-        if (path != null && path.length() > 0) {
-            callbackContext.success(path);
-        } else {
-            callbackContext.error("Expected one non-empty string argument.");
-        }
+  @Override
+  public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    if (action.equals(OPEN_ACTION)) {
+      String path = args.getString(0);
+      this.chooseIntent(path, callbackContext);
+      return true;
     }
+    return false;
+  }
+
+  private void chooseIntent(String path, CallbackContext callbackContext) {
+    if (path != null && path.length() > 0) {
+      callbackContext.success(path);
+    } else {
+      callbackContext.error("Expected one non-empty string argument.");
+    }
+  }
 }
