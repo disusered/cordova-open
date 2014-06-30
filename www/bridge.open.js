@@ -19,13 +19,12 @@ exports.open = function(args, success, error) {
   if (!args || arguments.length === 0) return;
 
   function onSuccess() {
-    // invoke optional callback
-    if (typeof success === 'function') success();
+    var args = (arguments.length === 1) ? arguments[0] : arguments;
+    if (typeof success === 'function') success(args);
   }
 
-  function onError() {
-    // invoke optional callback
-    if (typeof error === 'function') error();
+  function onError(error) {
+    if (typeof error === 'function') error(error);
   }
   exec(onSuccess, onError, "Open", "open", [args]);
 };
