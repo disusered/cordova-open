@@ -1,4 +1,4 @@
-package com.bridge.open;
+package com.bridge;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -10,19 +10,19 @@ import org.json.JSONObject;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class BridgeOpen extends CordovaPlugin {
+public class Open extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("coolMethod")) {
+        if (action.equals("open")) {
             String message = args.getString(0);
-            this.coolMethod(message, callbackContext);
+            this.chooseIntent(message, callbackContext);
             return true;
         }
         return false;
     }
 
-    private void coolMethod(String message, CallbackContext callbackContext) {
+    private void chooseIntent(String message, CallbackContext callbackContext) {
         if (message != null && message.length() > 0) {
             callbackContext.success(message);
         } else {

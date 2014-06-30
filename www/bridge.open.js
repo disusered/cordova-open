@@ -27,5 +27,5 @@ exports.open = function(args, success, error) {
     // invoke optional callback
     if (typeof error === 'function') error();
   }
-  exec(onSuccess, onError, "BridgeOpen", "open", [args]);
+  exec(onSuccess, onError, "Open", "open", [args]);
 };
