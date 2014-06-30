@@ -31,7 +31,7 @@ cordova.plugins.bridge.open(file, success, error)
 cordova.plugins.bridge.open('cdv://path/to/some/file.mp4');
 ```
 
-#### With optional callback parameters
+#### With optional callbacks
 
 ```javascript
 var bridgeOpen = cordova.plugins.bridge.open;
@@ -49,7 +49,9 @@ bridgeOpen('cdv://path/to/some/file.mp4', success, error);
 
 ## Todo
 
+- ~~Echo on Android~~
 - Open files on Android
+- Echo on iOS
 - Open files on iOS
 
 ## Links
