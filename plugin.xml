@@ -26,5 +26,6 @@
     </config-file>
     <framework src="QuickLook.framework" />
     <source-file src="src/ios/Open.m"/>
+    <header-file src="src/ios/Open.h"/>
   </platform>
 </plugin>

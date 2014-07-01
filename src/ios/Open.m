@@ -1,13 +1,4 @@
-/********* Open.m Cordova Plugin Implementation *******/
-
-#import <Cordova/CDV.h>
-
-@interface Open : CDVPlugin {
-  // Member variables go here.
-}
-
-- (void)open:(CDVInvokedUrlCommand*)command;
-@end
+#import "Open.h"
 
 @implementation Open
 
