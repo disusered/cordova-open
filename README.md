@@ -28,7 +28,7 @@ cordova.plugins.bridge.open(file, success, error)
 #### Default usage
 
 ```javascript
-cordova.plugins.bridge.open('cdv://path/to/some/file.mp4');
+cordova.plugins.bridge.open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg');
 ```
 
 #### With optional callbacks
@@ -44,14 +44,14 @@ function error() {
   console.log('bridge.open error');
 }
 
-bridgeOpen('cdv://path/to/some/file.mp4', success, error);
+bridgeOpen('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error);
 ```
 
 ## Todo
 
 - ~~Echo on Android~~
 - Open files on Android
-- Echo on iOS
+- ~~Echo on iOS~~
 - Open files on iOS
 
 ## Links
