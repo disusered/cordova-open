@@ -62,9 +62,21 @@ public class Open extends CordovaPlugin {
    */
   private void chooseIntent(String url, CallbackContext callbackContext) {
     if (url != null && url.length() > 0) {
-      // callbackContext.success("Successfully opened file.");
+      try {
+        Uri uri = Uri.parse(url);
+        String mime = getMimeType(url);
+        Intent fileIntent = new Intent(Intent.ACTION_VIEW);
+
+        fileIntent.setDataAndTypeAndNormalize(uri, mime);
+        cordova.getActivity().startActivity(fileIntent);
+
+        callbackContext.success();
+      } catch (ActivityNotFoundException e) {
+        e.printStackTrace();
+        callbackContext.error(1);
+      }
     } else {
-      // callbackContext.error("Expected one non-empty string argument.");
+      callbackContext.error(2);
     }
   }
 }
