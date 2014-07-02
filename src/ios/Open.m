@@ -11,8 +11,9 @@
     if (path != nil && [path length] > 0) {
 
         NSURL* url = [NSURL URLWithString:path];
+        NSError* err;
 
-        if (url.isFileURL) {
+        if (url.isFileURL && [url checkResourceIsReachableAndReturnError:&err] == YES) {
 
             QLPreviewController* previewCtrl = [[QLPreviewController alloc] init];
             previewCtrl.delegate = self;
