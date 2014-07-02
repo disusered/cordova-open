@@ -63,3 +63,4 @@ bridgeOpen('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error)
 - http://docs.phonegap.com/en/3.5.0/guide_hybrid_plugins_index.md.html#Plugin%20Development%20Guide
 - http://docs.phonegap.com/en/3.5.0/guide_platforms_android_plugin.md.html#Android%20Plugins
 - http://docs.phonegap.com/en/3.5.0/guide_platforms_ios_plugin.md.html#iOS%20Plugins
+- https://github.com/apache/cordova-ios/blob/master/CordovaLib/Classes/CDVPlugin.m
