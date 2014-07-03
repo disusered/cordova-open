@@ -47,18 +47,8 @@ function error() {
 bridgeOpen('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error);
 ```
 
-## Todo
-
-- ~~Echo on Android~~
-- ~~Open files on Android~~
-- ~~Echo on iOS~~
-- Open files on iOS
-
 ## Links
 
-- http://stackoverflow.com/questions/18265704/ios-qlpreviewcontroller-show-pdf-saved-to-file-system
-- http://stackoverflow.com/questions/9513783/how-to-use-open-in-feature-to-ios-app
-- http://chrisdell.info/blog/writing-ios-cordova-plugin-pure-swift/
 - http://docs.phonegap.com/en/3.5.0/plugin_ref_plugman.md.html#Using%20Plugman%20to%20Manage%20Plugins
 - http://docs.phonegap.com/en/3.5.0/guide_hybrid_plugins_index.md.html#Plugin%20Development%20Guide
 - http://docs.phonegap.com/en/3.5.0/guide_platforms_android_plugin.md.html#Android%20Plugins
