@@ -24,6 +24,9 @@
         <param name="ios-package" value="Open"/>
       </feature>
     </config-file>
+    <framework src="QuickLook.framework" />
+    <framework src="Foundation.framework" />
     <source-file src="src/ios/Open.m"/>
+    <header-file src="src/ios/Open.h"/>
   </platform>
 </plugin>
