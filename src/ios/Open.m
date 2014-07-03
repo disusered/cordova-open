@@ -15,6 +15,8 @@
 
         if (url.isFileURL && [url checkResourceIsReachableAndReturnError:&err] == YES) {
 
+            self.fileUrl = url;
+
             QLPreviewController* previewCtrl = [[QLPreviewController alloc] init];
             previewCtrl.delegate = self;
             previewCtrl.dataSource = self;
@@ -53,7 +55,7 @@
 
 - (NSURL*)previewItemURL
 {
-    return self.url;
+    return self.fileUrl;
 }
 
 @end
