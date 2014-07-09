@@ -34,17 +34,21 @@ cordova.plugins.bridge.open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg'
 #### With optional callbacks
 
 ```javascript
-var bridgeOpen = cordova.plugins.bridge.open;
+var open = cordova.plugins.bridge.open;
 
 function success() {
-  console.log('bridge.open success');
+  console.log('Success');
 }
 
-function error() {
-  console.log('bridge.open error');
+function error(code) {
+  if (code === 1) {
+    console.log('No file handler found');
+  } else {
+    console.log('Undefined error');
+  }
 }
 
-bridgeOpen('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error);
+open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error);
 ```
 
 ## Links
