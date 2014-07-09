@@ -24,8 +24,9 @@ exports.open = function(args, success, error) {
     if (typeof success === 'function') success(args);
   }
 
-  function onError(error) {
-    if (typeof error === 'function') error(error);
+  function onError(code) {
+    if (typeof error === 'function') error(code);
+    return code || 0;
   }
   exec(onSuccess, onError, "Open", "open", [args]);
 };
