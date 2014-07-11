@@ -13,20 +13,22 @@ var exec = require('cordova/exec');
  * open
  *
  * @param {String} args File URI
- * @param {Function} success Call on success
- * @param {Function} error Call on error
+ * @param {Function} success Success callback
+ * @param {Function} error Failure callback
  */
 exports.open = function(args, success, error) {
   if (!args || arguments.length === 0) return;
 
-  function onSuccess() {
-    var args = (arguments.length === 1) ? arguments[0] : arguments;
-    if (typeof success === 'function') success(args);
+  function onSuccess(path) {
+    if (typeof success === 'function') success(path);
+    return path;
   }
 
   function onError(code) {
-    if (typeof error === 'function') error(code);
-    return code || 0;
+    var error = code || 0;
+    if (typeof error === 'function') error(error);
+    return error;
   }
+
   exec(onSuccess, onError, "Open", "open", [args]);
 };
