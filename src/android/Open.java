@@ -18,7 +18,7 @@ import android.webkit.MimeTypeMap;
 import android.content.ActivityNotFoundException;
 
 /**
- * This class echoes a string called from JavaScript.
+ * This class starts an activity for an intent to view files
  */
 public class Open extends CordovaPlugin {
 
