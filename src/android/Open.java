@@ -27,8 +27,8 @@ public class Open extends CordovaPlugin {
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     if (action.equals(OPEN_ACTION)) {
-      String url = args.getString(0);
-      this.chooseIntent(url, callbackContext);
+      String path = args.getString(0);
+      this.chooseIntent(path, callbackContext);
       return true;
     }
     return false;
@@ -37,13 +37,13 @@ public class Open extends CordovaPlugin {
   /**
    * Returns the MIME type of the file.
    *
-   * @param url
+   * @param path
    * @return
    */
-  private static String getMimeType(String url) {
+  private static String getMimeType(String path) {
     String mimeType = null;
 
-    String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+    String extension = MimeTypeMap.getFileExtensionFromUrl(path);
     if (extension != null) {
       MimeTypeMap mime = MimeTypeMap.getSingleton();
       mimeType = mime.getMimeTypeFromExtension(extension);
@@ -57,14 +57,14 @@ public class Open extends CordovaPlugin {
   /**
    * Creates an intent for the data of mime type
    *
-   * @param url
+   * @param path
    * @param callbackContext
    */
-  private void chooseIntent(String url, CallbackContext callbackContext) {
-    if (url != null && url.length() > 0) {
+  private void chooseIntent(String path, CallbackContext callbackContext) {
+    if (path != null && path.length() > 0) {
       try {
-        Uri uri = Uri.parse(url);
-        String mime = getMimeType(url);
+        Uri uri = Uri.parse(path);
+        String mime = getMimeType(path);
         Intent fileIntent = new Intent(Intent.ACTION_VIEW);
 
         fileIntent.setDataAndTypeAndNormalize(uri, mime);
