@@ -7,7 +7,7 @@
   <repo>https://github.com/cordova-bridge/open</repo>
   <issue>https://github.com/cordova-bridge/open/issues</issue>
   <js-module name="Open" src="www/bridge.open.js">
-    <clobbers target="cordova.plugins.bridge"/>
+    <merges target="cordova.plugins.bridge"/>
   </js-module>
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
