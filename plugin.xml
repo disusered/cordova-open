@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.open" version="0.1.1">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.open" version="0.1.2">
   <name>Open</name>
   <description>Open documents with compatible applications installed on the user's device.</description>
   <license>GPLv2</license>
@@ -7,7 +7,7 @@
   <repo>https://github.com/cordova-bridge/open</repo>
   <issue>https://github.com/cordova-bridge/open/issues</issue>
   <js-module name="Open" src="www/bridge.open.js">
-    <clobbers target="cordova.plugins.bridge"/>
+    <merges target="cordova.plugins.bridge"/>
   </js-module>
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
