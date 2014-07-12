@@ -25,9 +25,9 @@ exports.open = function(args, success, error) {
   }
 
   function onError(code) {
-    var error = code || 0;
-    if (typeof error === 'function') error(error);
-    return error;
+    code = code || 0;
+    if (typeof error === 'function') error(code);
+    return code;
   }
 
   exec(onSuccess, onError, "Open", "open", [args]);
