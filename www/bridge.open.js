@@ -4,7 +4,7 @@
  * @copyright © 2014 cordova-bridge
  * @license GPLv2
  * @author Carlos Antonio
- * @version 0.1.2
+ * @version 0.1.3
 */
 
 var exec = require('cordova/exec');
@@ -25,9 +25,9 @@ exports.open = function(args, success, error) {
   }
 
   function onError(code) {
-    var error = code || 0;
-    if (typeof error === 'function') error(error);
-    return error;
+    code = code || 0;
+    if (typeof error === 'function') error(code);
+    return code;
   }
 
   exec(onSuccess, onError, "Open", "open", [args]);
