@@ -14,9 +14,14 @@
 
 @implementation Open
 
+/**
+ *  open
+ *
+ *  @param command An array of arguments passed from javascript
+ */
 - (void)open:(CDVInvokedUrlCommand *)command {
-  CDVPluginResult *commandResult = nil;
 
+  CDVPluginResult *commandResult = nil;
   NSString *path = [command.arguments objectAtIndex:0];
 
   if (path != nil && [path length] > 0) {
