@@ -16,7 +16,7 @@
       </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
-    <source-file src="src/android/Open.java" target-dir="src/com/bridge/Open"/>
+    <source-file src="src/android/Open.java" target-dir="src/com/bridge"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
