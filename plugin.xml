@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.open" version="0.1.4">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.open" version="0.1.5">
   <name>Open</name>
   <description>Open documents with compatible applications installed on the user's device.</description>
   <license>GPLv2</license>
@@ -16,7 +16,7 @@
       </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
-    <source-file src="src/android/Open.java" target-dir="src/com/bridge/Open"/>
+    <source-file src="src/android/Open.java" target-dir="src/com/bridge"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
