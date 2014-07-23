@@ -17,11 +17,9 @@ import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.net.Uri;
 import android.content.Intent;
-import android.content.Context;
 import android.webkit.MimeTypeMap;
 import android.content.ActivityNotFoundException;
 
