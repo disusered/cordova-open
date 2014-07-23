@@ -11,7 +11,14 @@
  */
 
 package com.bridge;
+
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -19,13 +26,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.net.Uri;
+import android.webkit.MimeTypeMap;
+import android.webkit.CookieManager;
 import android.content.Context;
 import android.content.Intent;
-import android.webkit.MimeTypeMap;
 import android.content.ActivityNotFoundException;
-import android.webkit.URLUtil;
 import android.os.AsyncTask;
-import android.webkit.CookieManager;
 
 /**
  * This class starts an activity for an intent to view files
