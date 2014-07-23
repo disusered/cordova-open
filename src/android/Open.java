@@ -15,14 +15,17 @@ import java.io.File;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.net.Uri;
+import android.content.Context;
 import android.content.Intent;
 import android.webkit.MimeTypeMap;
 import android.content.ActivityNotFoundException;
+import android.webkit.URLUtil;
+import android.os.AsyncTask;
+import android.webkit.CookieManager;
 
 /**
  * This class starts an activity for an intent to view files
@@ -34,17 +37,10 @@ public class Open extends CordovaPlugin {
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     if (action.equals(OPEN_ACTION)) {
-      // get path arg
       String path = args.getString(0);
-      // if path is set execute plugin methods
-      if (path != null && path.length() > 0) {
-        this.previewFile(path, callbackContext);
-      } else {
-        callbackContext.error(2);
+        new FileDownloadAsyncTask(path, callbackContext).execute();
       }
       return true;
-    }
-    return false;
   }
 
   /**
@@ -74,21 +70,46 @@ public class Open extends CordovaPlugin {
    * @param callbackContext
    */
   private void previewFile(String path, CallbackContext callbackContext) {
-    try {
-      Uri uri = Uri.parse(path);
-      String mime = getMimeType(path);
-      Intent fileIntent = new Intent(Intent.ACTION_VIEW);
+    if (path != null && path.length() > 0) {
+      try {
+        Uri uri = Uri.parse(path);
+        String mime = getMimeType(path);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Context context = cordova.getActivity().getApplicationContext();
 
-      fileIntent.setDataAndTypeAndNormalize(uri, mime);
-      cordova.getActivity().startActivity(fileIntent);
+        intent.setDataAndTypeAndNormalize(uri, mime);
+        context.startActivity(intent);
 
-      callbackContext.success();
-    } catch (ActivityNotFoundException e) {
-      e.printStackTrace();
-      callbackContext.error(1);
+        callbackContext.success();
+      } catch (ActivityNotFoundException e) {
+        e.printStackTrace();
+        callbackContext.error(e.getMessage());
+      }
+    } else {
+      callbackContext.error(2);
     }
   }
 
-  private File downloadFile(String url, CallbackContext callbackContext) {
+  private class FileDownloadAsyncTask extends AsyncTask<Void, Void, File> {
+    private final CallbackContext callbackContext;
+    private final String url;
+
+    public FileDownloadAsyncTask(String url, CallbackContext callbackContext) {
+      super();
+      this.callbackContext = callbackContext;
+      this.url = url;
+    }
+
+    @Override
+    protected File doInBackground(Void... arg0) {
+      // File file = downloadFile(url);
+      return file;
+    }
+
+    @Override
+    protected void onPostExecute(File result) {
+      String path = result.toString();
+      previewFile(path, callbackContext);
+    }
   }
 }
