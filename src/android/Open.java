@@ -108,6 +108,7 @@ public class Open extends CordovaPlugin {
   private File downloadFile(String url, CallbackContext callbackContext) {
     try {
       Uri uri  = Uri.parse(url);
+      uri = uri.normalizeScheme();
       String Filename = uri.getLastPathSegment();
 
       CookieManager cookieManager = CookieManager.getInstance();
