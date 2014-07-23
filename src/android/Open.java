@@ -11,6 +11,7 @@
  */
 
 package com.bridge;
+import java.io.File;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -33,8 +34,14 @@ public class Open extends CordovaPlugin {
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     if (action.equals(OPEN_ACTION)) {
+      // get path arg
       String path = args.getString(0);
-      this.previewFile(path, callbackContext);
+      // if path is set execute plugin methods
+      if (path != null && path.length() > 0) {
+        this.previewFile(path, callbackContext);
+      } else {
+        callbackContext.error(2);
+      }
       return true;
     }
     return false;
@@ -67,22 +74,21 @@ public class Open extends CordovaPlugin {
    * @param callbackContext
    */
   private void previewFile(String path, CallbackContext callbackContext) {
-    if (path != null && path.length() > 0) {
-      try {
-        Uri uri = Uri.parse(path);
-        String mime = getMimeType(path);
-        Intent fileIntent = new Intent(Intent.ACTION_VIEW);
+    try {
+      Uri uri = Uri.parse(path);
+      String mime = getMimeType(path);
+      Intent fileIntent = new Intent(Intent.ACTION_VIEW);
 
-        fileIntent.setDataAndTypeAndNormalize(uri, mime);
-        cordova.getActivity().startActivity(fileIntent);
+      fileIntent.setDataAndTypeAndNormalize(uri, mime);
+      cordova.getActivity().startActivity(fileIntent);
 
-        callbackContext.success();
-      } catch (ActivityNotFoundException e) {
-        e.printStackTrace();
-        callbackContext.error(1);
-      }
-    } else {
-      callbackContext.error(2);
+      callbackContext.success();
+    } catch (ActivityNotFoundException e) {
+      e.printStackTrace();
+      callbackContext.error(1);
     }
+  }
+
+  private File downloadFile(String url, CallbackContext callbackContext) {
   }
 }
