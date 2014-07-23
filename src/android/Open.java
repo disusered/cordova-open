@@ -90,10 +90,10 @@ public class Open extends CordovaPlugin {
       Uri uri = Uri.fromFile(file);
       String mime = getMimeType(path);
       Intent intent = new Intent(Intent.ACTION_VIEW);
-      Context context = cordova.getActivity().getApplicationContext();
+      Context activity = cordova.getActivity();
 
       intent.setDataAndTypeAndNormalize(uri, mime);
-      context.startActivity(intent);
+      activity.startActivity(intent);
 
       callbackContext.success();
     } catch (ActivityNotFoundException e) {
