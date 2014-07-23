@@ -83,6 +83,10 @@ public class Open extends CordovaPlugin {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Context context = cordova.getActivity().getApplicationContext();
 
+        // TODO normalize is used because the uri is from the download,
+        // which is a temporary file and ends in .tmp. The method works
+        // because we use mime based on our own method. We could deprecate
+        // the mime method by downloading to permanent storage
         intent.setDataAndTypeAndNormalize(uri, mime);
         context.startActivity(intent);
 
@@ -94,6 +98,50 @@ public class Open extends CordovaPlugin {
     } else {
       callbackContext.error(2);
     }
+  }
+
+  private File downloadFile(String url, CallbackContext callbackContext) {
+    try {
+      Uri uri  = Uri.parse(url);
+      String Filename = uri.getLastPathSegment();
+
+      CookieManager cookieManager = CookieManager.getInstance();
+      String cookie = null;
+      if (cookieManager.getCookie(url) != null) {
+        cookie = cookieManager.getCookie(url).toString();
+      }
+
+      URL tempUrl = new URL(url);
+      HttpURLConnection connection = (HttpURLConnection) tempUrl.openConnection();
+      if (cookie != null) {
+        connection.setRequestProperty("Cookie", cookie);
+      }
+
+      Context context = cordova.getActivity().getApplicationContext();
+      InputStream inputStream = connection.getInputStream();
+      String ext = MimeTypeMap.getFileExtensionFromUrl(url);
+      File file = File.createTempFile(Filename, "." + ext, context.getExternalCacheDir());
+
+      file.setReadable(true, false);
+      OutputStream outputStream = new FileOutputStream(file);
+
+      byte[] data = new byte[1024];
+      int buffer = 0;
+
+      while ((buffer = inputStream.read(data)) > 0) {
+        outputStream.write(data, 0, buffer);
+        outputStream.flush();
+      }
+
+      outputStream.close();
+      inputStream.close();
+
+      return file;
+    } catch(IOException e) {
+      e.printStackTrace();
+      callbackContext.error(e.getMessage());
+    }
+    return null;
   }
 
   private class FileDownloadAsyncTask extends AsyncTask<Void, Void, File> {
@@ -108,7 +156,7 @@ public class Open extends CordovaPlugin {
 
     @Override
     protected File doInBackground(Void... arg0) {
-      // File file = downloadFile(url);
+      File file = downloadFile(url, callbackContext);
       return file;
     }
 
