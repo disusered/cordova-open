@@ -86,15 +86,12 @@ public class Open extends CordovaPlugin {
    */
   private void previewFile(String path, CallbackContext callbackContext) {
     try {
-      Uri uri = Uri.parse(path);
+      File file = new File(path);
+      Uri uri = Uri.fromFile(file);
       String mime = getMimeType(path);
       Intent intent = new Intent(Intent.ACTION_VIEW);
       Context context = cordova.getActivity().getApplicationContext();
 
-      // TODO normalize is used because the uri is from the download,
-      // which is a temporary file and ends in .tmp. The method works
-      // because we use mime based on our own method. We could deprecate
-      // the mime method by downloading to permanent storage
       intent.setDataAndTypeAndNormalize(uri, mime);
       context.startActivity(intent);
 
