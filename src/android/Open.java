@@ -34,7 +34,7 @@ public class Open extends CordovaPlugin {
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     if (action.equals(OPEN_ACTION)) {
       String path = args.getString(0);
-      this.chooseIntent(path, callbackContext);
+      this.previewFile(path, callbackContext);
       return true;
     }
     return false;
@@ -66,7 +66,7 @@ public class Open extends CordovaPlugin {
    * @param path
    * @param callbackContext
    */
-  private void chooseIntent(String path, CallbackContext callbackContext) {
+  private void previewFile(String path, CallbackContext callbackContext) {
     if (path != null && path.length() > 0) {
       try {
         Uri uri = Uri.parse(path);
