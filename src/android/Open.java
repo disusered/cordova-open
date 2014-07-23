@@ -44,9 +44,15 @@ public class Open extends CordovaPlugin {
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     if (action.equals(OPEN_ACTION)) {
       String path = args.getString(0);
+      if (path != null && path.length() > 0) {
         new FileDownloadAsyncTask(path, callbackContext).execute();
+        return true;
+      } else {
+        return false;
       }
-      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -79,27 +85,23 @@ public class Open extends CordovaPlugin {
    * @param callbackContext
    */
   private void previewFile(String path, CallbackContext callbackContext) {
-    if (path != null && path.length() > 0) {
-      try {
-        Uri uri = Uri.parse(path);
-        String mime = getMimeType(path);
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Context context = cordova.getActivity().getApplicationContext();
+    try {
+      Uri uri = Uri.parse(path);
+      String mime = getMimeType(path);
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+      Context context = cordova.getActivity().getApplicationContext();
 
-        // TODO normalize is used because the uri is from the download,
-        // which is a temporary file and ends in .tmp. The method works
-        // because we use mime based on our own method. We could deprecate
-        // the mime method by downloading to permanent storage
-        intent.setDataAndTypeAndNormalize(uri, mime);
-        context.startActivity(intent);
+      // TODO normalize is used because the uri is from the download,
+      // which is a temporary file and ends in .tmp. The method works
+      // because we use mime based on our own method. We could deprecate
+      // the mime method by downloading to permanent storage
+      intent.setDataAndTypeAndNormalize(uri, mime);
+      context.startActivity(intent);
 
-        callbackContext.success();
-      } catch (ActivityNotFoundException e) {
-        e.printStackTrace();
-        callbackContext.error(e.getMessage());
-      }
-    } else {
-      callbackContext.error(2);
+      callbackContext.success();
+    } catch (ActivityNotFoundException e) {
+      e.printStackTrace();
+      callbackContext.error(e.getMessage());
     }
   }
 
