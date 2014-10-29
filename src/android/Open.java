@@ -32,6 +32,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ActivityNotFoundException;
 import android.os.AsyncTask;
+import android.os.Build;
 
 /**
  * This class starts an activity for an intent to view files
@@ -92,7 +93,11 @@ public class Open extends CordovaPlugin {
       Intent intent = new Intent(Intent.ACTION_VIEW);
       Context activity = cordova.getActivity();
 
-      intent.setDataAndTypeAndNormalize(uri, mime);
+      if( Build.VERSION.SDK_INT > 15 ){
+        intent.setDataAndTypeAndNormalize(uri, mime); // API Level 16 -> Android 4.1
+      } else {
+        intent.setDataAndType(uri, mime);
+      }
       activity.startActivity(intent);
 
       callbackContext.success();
@@ -105,7 +110,11 @@ public class Open extends CordovaPlugin {
   private File downloadFile(String url, CallbackContext callbackContext) {
     try {
       Uri uri  = Uri.parse(url);
-      uri = uri.normalizeScheme();
+
+      if( Build.VERSION.SDK_INT > 15 ){
+        uri = uri.normalizeScheme(); // min API Level 16 --> Android 4.1
+      }
+
       String Filename = uri.getLastPathSegment();
 
       CookieManager cookieManager = CookieManager.getInstance();
