@@ -6,7 +6,7 @@ Open documents with compatible applications installed on the user's device.
 ## Install
 
 ```bash
-$ cordova plugin add https://github.com/cordova-bridge/open
+$ cordova plugin add com.bridge.open
 ```
 
 ## Usage
