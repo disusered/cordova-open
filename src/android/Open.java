@@ -17,13 +17,12 @@ import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.net.Uri;
 import android.content.Intent;
-import android.content.Context;
 import android.webkit.MimeTypeMap;
 import android.content.ActivityNotFoundException;
+import android.os.Build;
 
 /**
  * This class starts an activity for an intent to view files
@@ -75,7 +74,12 @@ public class Open extends CordovaPlugin {
         String mime = getMimeType(path);
         Intent fileIntent = new Intent(Intent.ACTION_VIEW);
 
-        fileIntent.setDataAndTypeAndNormalize(uri, mime);
+        if( Build.VERSION.SDK_INT > 15 ){
+          fileIntent.setDataAndTypeAndNormalize(uri, mime); // API Level 16 -> Android 4.1
+        } else {
+          fileIntent.setDataAndType(uri, mime);
+        }
+
         cordova.getActivity().startActivity(fileIntent);
 
         callbackContext.success();
