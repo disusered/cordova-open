@@ -1,45 +1,11 @@
 exports.defineAutoTests = function() {
-  describe('Device Information (window.device)', function () {
-    it("should exist", function() {
-      expect(window.device).toBeDefined();
+  describe('Bridge plugin (window.cordova.plugins.bridge)', function () {
+    it('should exist', function() {
+      expect(window.cordova.plugins.bridge).toBeDefined();
     });
 
-    it("should contain a platform specification that is a string", function() {
-      expect(window.device.platform).toBeDefined();
-      expect((new String(window.device.platform)).length > 0).toBe(true);
-    });
-
-    it("should contain a version specification that is a string", function() {
-      expect(window.device.version).toBeDefined();
-      expect((new String(window.device.version)).length > 0).toBe(true);
-    });
-
-    it("should contain a UUID specification that is a string or a number", function() {
-      expect(window.device.uuid).toBeDefined();
-      if (typeof window.device.uuid === 'string' || typeof window.device.uuid === 'object') {
-        expect((new String(window.device.uuid)).length > 0).toBe(true);
-      } else {
-        expect(window.device.uuid > 0).toBe(true);
-      }
-    });
-
-    it("should contain a cordova specification that is a string", function() {
-      expect(window.device.cordova).toBeDefined();
-      expect((new String(window.device.cordova)).length > 0).toBe(true);
-    });
-
-    it("should depend on the precense of cordova.version string", function() {
-      expect(window.cordova.version).toBeDefined();
-      expect((new String(window.cordova.version)).length > 0).toBe(true);
-    });
-
-    it("should contain device.cordova equal to cordova.version", function() {
-      expect(window.device.cordova).toBe(window.cordova.version);
-    });
-
-    it("should contain a model specification that is a string", function() {
-      expect(window.device.model).toBeDefined();
-      expect((new String(window.device.model)).length > 0).toBe(true);
+    it('should contain the Open plugin', function() {
+      expect(window.cordova.plugins.bridge.open).toBeDefined();
     });
   });
 };
@@ -60,14 +26,26 @@ exports.defineManualTests = function(contentEl, createActionButton) {
         log.innerHTML = '';
     };
 
-    var device_tests = '<h3>Press Dump Device button to get device information</h3>' +
-        '<div id="dump_device"></div>' +
-        'Expected result: Status box will get updated with device info. (i.e. platform, version, uuid, model, etc)';
+    var device_tests = '<h3>Press Open Image and a test image will open in a native context</h3>' +
+        '<div id="open_image"></div>' +
+        'Expected result: Image will open in native modal.';
 
     contentEl.innerHTML = '<div id="info"></div>' + device_tests;
 
-    createActionButton('Dump device', function() {
-      clearLog();
-      logMessage(JSON.stringify(window.device, null, '\t'));
-    }, "dump_device");
+    createActionButton('Open Image', function() {
+      function success() {
+        clearLog();
+        logMessage('Success');
+      }
+
+      function error(code) {
+        clearLog();
+        if (code === 1) {
+          logMessage('No file handler found');
+        } else {
+          logMessage('Undefined error');
+        }
+      }
+      cordova.plugins.bridge.open('file:/storage/sdcard/Pictures/icon.png', success, error);
+    }, "open_image");
 };
