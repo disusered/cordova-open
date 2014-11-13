@@ -42,20 +42,25 @@ exports.defineManualTests = function(contentEl, createActionButton) {
 
   contentEl.innerHTML = '<div id="info"></div>' + testInfo;
 
-  createActionButton('Open File', function() {
-    function success() {
-      clearLog();
-      logMessage('Success');
-    }
+  function success() {
+    clearLog();
+    logMessage('Success');
+  }
 
-    function error(code) {
-      clearLog();
-      if (code === 1) {
-        logMessage('No file handler found');
-      } else {
-        logMessage('Undefined error');
-      }
+  function error(code) {
+    clearLog();
+    if (code === 1) {
+      logMessage('No file handler found');
+    } else {
+      logMessage('Undefined error');
     }
+  }
+
+  createActionButton('Open Image', function() {
+    cordova.plugins.bridge.open('file:/storage/sdcard/Pictures/icon.png', success, error);
+  }, 'open-file');
+
+  createActionButton('Open PDF', function() {
     cordova.plugins.bridge.open('file:/storage/sdcard/Pictures/sample.pdf', success, error);
   }, 'open-file');
 };
