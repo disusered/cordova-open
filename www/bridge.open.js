@@ -16,7 +16,7 @@ var exec = require('cordova/exec');
  * @param {Function} error Failure callback
  */
 exports.open = function(uri, success, error) {
-  if (!uri || arguments.length === 0) return;
+  if (!uri || arguments.length === 0) return false;
 
   function onSuccess(path) {
     if (typeof success === 'function') success(path);
