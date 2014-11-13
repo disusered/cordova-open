@@ -31,5 +31,5 @@ exports.open = function(uri, success, error) {
 
   uri = encodeURI(uri);
 
-  exec(onSuccess, onError, "Open", "open", [uri]);
+  exec(onSuccess, onError, 'Open', 'open', [uri]);
 };
