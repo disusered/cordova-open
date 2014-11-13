@@ -13,7 +13,7 @@ exports.defineAutoTests = function() {
 exports.defineManualTests = function(contentEl, createActionButton) {
   var logMessage,
       clearLog,
-      imgTestInfo;
+      testInfo;
 
   logMessage = function(message, color) {
       var log = document.getElementById('info'),
@@ -30,13 +30,13 @@ exports.defineManualTests = function(contentEl, createActionButton) {
     log.innerHTML = '';
   };
 
-  imgTestInfo = '<h3>Press Open Image and a test image will open in a native context</h3>' +
-      '<div id="open_image"></div>' +
-      'Expected result: Image will open in native modal.';
+  testInfo = '<h3>Press Open File and a test file will open in a native context</h3>' +
+      '<div id="open-file"></div>' +
+      'Expected result: File will open in native modal.';
 
-  contentEl.innerHTML = '<div id="info"></div>' + imgTestInfo;
+  contentEl.innerHTML = '<div id="info"></div>' + testInfo;
 
-  createActionButton('Open Image', function() {
+  createActionButton('Open File', function() {
     function success() {
       clearLog();
       logMessage('Success');
@@ -50,6 +50,6 @@ exports.defineManualTests = function(contentEl, createActionButton) {
         logMessage('Undefined error');
       }
     }
-    cordova.plugins.bridge.open('file:/storage/sdcard/Pictures/icon.png', success, error);
-  }, 'open_image');
+    cordova.plugins.bridge.open('file:/storage/sdcard/Pictures/sample.pdf', success, error);
+  }, 'open-file');
 };
