@@ -1,11 +1,17 @@
 exports.defineAutoTests = function() {
-  describe('Bridge plugin (window.cordova.plugins.bridge)', function() {
+  describe('Bridge plugin (cordova.plugins.bridge)', function() {
     it('should exist', function() {
       expect(window.cordova.plugins.bridge).toBeDefined();
     });
+  });
 
-    it('should contain the Open plugin', function() {
+  describe('Open method (cordova.plugins.bridge.open)', function() {
+    it('should exist', function() {
       expect(window.cordova.plugins.bridge.open).toBeDefined();
+    });
+
+    it('should return false if run with no arguments', function() {
+      expect(window.cordova.plugins.bridge.open()).toBe(false);
     });
   });
 };
