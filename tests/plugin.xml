@@ -4,7 +4,6 @@
   <license>GPLv2</license>
   <js-module src="tests.js" name="tests">
   </js-module>
-  <asset src="resources" target="cdvtests/open-resources" />
 
   <dependency id="org.apache.cordova.file-transfer"/>
 </plugin>
