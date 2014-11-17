@@ -17,24 +17,7 @@ exports.defineAutoTests = function() {
 };
 
 exports.defineManualTests = function(contentEl, createActionButton) {
-  var logMessage,
-      clearLog,
-      testInfo;
-
-  logMessage = function(message, color) {
-      var log = document.getElementById('info'),
-          logLine = document.createElement('div');
-      if (color) {
-        logLine.style.color = color;
-      }
-      logLine.innerHTML = message;
-      log.appendChild(logLine);
-    };
-
-  clearLog = function() {
-    var log = document.getElementById('info');
-    log.innerHTML = '';
-  };
+  var testInfo;
 
   testInfo = '<h3>Press Open File and a test file will open in a native context</h3>' +
       '<div id="open-file"></div>' +
@@ -43,16 +26,14 @@ exports.defineManualTests = function(contentEl, createActionButton) {
   contentEl.innerHTML = testInfo;
 
   function success() {
-    clearLog();
-    logMessage('Success');
+    console.log('Successfully opened file!');
   }
 
   function error(code) {
-    clearLog();
     if (code === 1) {
-      logMessage('No file handler found');
+      console.log('No file handler found');
     } else {
-      logMessage('Undefined error');
+      console.log('Undefined error');
     }
   }
 
