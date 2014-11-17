@@ -78,7 +78,7 @@ exports.defineManualTests = function(contentEl, createActionButton) {
             cordova.plugins.bridge.open(entry.toURL(), success, error);
           },
           function fail(error) {
-            console.log('download error' + error);
+            console.log('download error', error);
           },
           false
       );
