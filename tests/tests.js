@@ -40,7 +40,7 @@ exports.defineManualTests = function(contentEl, createActionButton) {
       '<div id="open-file"></div>' +
       'Expected result: File will open in native modal.';
 
-  contentEl.innerHTML = '<div id="info"></div>' + testInfo;
+  contentEl.innerHTML = testInfo;
 
   function success() {
     clearLog();
