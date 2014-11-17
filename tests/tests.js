@@ -38,7 +38,7 @@ exports.defineManualTests = function(contentEl, createActionButton) {
   }
 
   function downloadAndOpen(fileUrl, directory) {
-    var dir = directory || 'externalCacheDirectory';
+    var dir = directory || 'cacheDirectory';
     document.addEventListener('deviceready', onDeviceReady, false);
     function onDeviceReady() {
       var ft = new FileTransfer(),
