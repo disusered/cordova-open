@@ -63,4 +63,25 @@ exports.defineManualTests = function(contentEl, createActionButton) {
   createActionButton('Open PDF', function() {
     cordova.plugins.bridge.open('file:/storage/sdcard/Pictures/sample.pdf', success, error);
   }, 'open-file');
+
+  createActionButton('Download and open image', function() {
+    document.addEventListener('deviceready', onDeviceReady, false);
+    function onDeviceReady() {
+      var ft = new FileTransfer(),
+          url = 'http://cordova.apache.org/images/logo_full.png',
+          filename = url.substring(url.lastIndexOf('/') + 1),
+          uri = encodeURI(url),
+          path = cordova.file.dataDirectory + filename;
+
+      ft.download(uri, path,
+          function done(entry) {
+            cordova.plugins.bridge.open(entry.toURL(), success, error);
+          },
+          function fail(error) {
+            console.log('download error' + error);
+          },
+          false
+      );
+    }
+  }, 'open-file');
 };
