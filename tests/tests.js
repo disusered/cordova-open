@@ -56,22 +56,15 @@ exports.defineManualTests = function(contentEl, createActionButton) {
     }
   }
 
-  createActionButton('Open Image', function() {
-    cordova.plugins.bridge.open('file:/storage/sdcard/Pictures/icon.png', success, error);
-  }, 'open-file');
-
-  createActionButton('Open PDF', function() {
-    cordova.plugins.bridge.open('file:/storage/sdcard/Pictures/sample.pdf', success, error);
-  }, 'open-file');
-
-  createActionButton('Download and open image', function() {
+  function downloadAndOpen(fileUrl, directory) {
+    var dir = directory || 'externalCacheDirectory';
     document.addEventListener('deviceready', onDeviceReady, false);
     function onDeviceReady() {
       var ft = new FileTransfer(),
-          url = 'http://cordova.apache.org/images/logo_full.png',
+          url = fileUrl,
           filename = url.substring(url.lastIndexOf('/') + 1),
           uri = encodeURI(url),
-          path = cordova.file.dataDirectory + filename;
+          path = cordova.file[dir] + filename;
 
       ft.download(uri, path,
           function done(entry) {
@@ -83,5 +76,9 @@ exports.defineManualTests = function(contentEl, createActionButton) {
           false
       );
     }
+  }
+
+  createActionButton('Open Image', function() {
+    downloadAndOpen('http://cordova.apache.org/images/logo_full.png');
   }, 'open-file');
 };
