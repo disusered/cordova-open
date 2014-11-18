@@ -32,10 +32,12 @@ exports.open = function(uri, success, error) {
   uri = encodeURI(uri);
 
   function downloadAndOpen(url) {
-    var dir = (cordova.file.tempDirectory) ? 'tempDirectory' : 'externalCacheDirectory',
-        ft = new FileTransfer(),
-        filename = url.substring(url.lastIndexOf('/') + 1),
-        path = cordova.file[dir] + filename;
+    var ft = new FileTransfer(),
+        tmp = cordova.file.tempDirectory,
+        ext = cordova.file.externalCacheDirectory,
+        dir = (tmp) ?  tmp : ext,
+        name = url.substring(url.lastIndexOf('/') + 1),
+        path = dir + name;
 
     ft.download(url, path,
         function done(entry) {
