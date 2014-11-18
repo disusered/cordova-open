@@ -3,7 +3,7 @@ open
 
 Open documents with compatible applications installed on the user's device.
 
-![Open](https://raw.githubusercontent.com/cordova-bridge/open/docs/open.png =300x "Open")
+<img src="https://raw.githubusercontent.com/cordova-bridge/open/docs/open.png" width="300px" />
 
 ## Install
 
