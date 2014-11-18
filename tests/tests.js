@@ -60,6 +60,10 @@ exports.defineManualTests = function(contentEl, createActionButton) {
   }
 
   createActionButton('Open Image', function() {
-    downloadAndOpen('http://cordova.apache.org/images/logo_full.png');
+    downloadAndOpen('https://raw.githubusercontent.com/cordova-bridge/open/test/test.png');
+  }, 'open-file');
+
+  createActionButton('Open PDF', function() {
+    downloadAndOpen('https://raw.githubusercontent.com/cordova-bridge/open/test/test.pdf');
   }, 'open-file');
 };
