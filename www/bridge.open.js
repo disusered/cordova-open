@@ -16,7 +16,7 @@ var exec = require('cordova/exec');
  * @param {Function} error Failure callback
  */
 exports.open = function(uri, success, error) {
-  if (!uri || arguments.length === 0) return;
+  if (!uri || arguments.length === 0) return false;
 
   function onSuccess(path) {
     if (typeof success === 'function') success(path);
@@ -31,5 +31,27 @@ exports.open = function(uri, success, error) {
 
   uri = encodeURI(uri);
 
-  exec(onSuccess, onError, "Open", "open", [uri]);
+  function downloadAndOpen(url) {
+    var ft = new FileTransfer(),
+        ios = cordova.file.cacheDirectory,
+        ext = cordova.file.externalCacheDirectory,
+        dir = (ext) ?  ext : ios,
+        name = url.substring(url.lastIndexOf('/') + 1),
+        path = dir + name;
+
+    ft.download(url, path,
+        function done(entry) {
+          var file = entry.toURL();
+          exec(onSuccess.bind(this, file), onError, 'Open', 'open', [file]);
+        },
+        onError,
+        false
+    );
+  }
+
+  if (uri.match('http')) {
+    downloadAndOpen(uri);
+  } else {
+    exec(onSuccess.bind(this, uri), onError, 'Open', 'open', [uri]);
+  }
 };
