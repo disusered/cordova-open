@@ -35,7 +35,7 @@ exports.open = function(uri, success, error) {
     var ft = new FileTransfer(),
         ios = cordova.file.cacheDirectory,
         ext = cordova.file.externalCacheDirectory,
-        dir = (ios) ?  ios : ext,
+        dir = (ext) ?  ext : ios,
         name = url.substring(url.lastIndexOf('/') + 1),
         path = dir + name;
 
