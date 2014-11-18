@@ -37,33 +37,15 @@ exports.defineManualTests = function(contentEl, createActionButton) {
     }
   }
 
-  function downloadAndOpen(fileUrl, directory) {
-    document.addEventListener('deviceready', onDeviceReady, false);
-    function onDeviceReady() {
-      var dir = (cordova.file.tempDirectory) ? 'tempDirectory' : 'externalCacheDirectory',
-          ft = new FileTransfer(),
-          url = fileUrl,
-          filename = url.substring(url.lastIndexOf('/') + 1),
-          uri = encodeURI(url),
-          path = cordova.file[dir] + filename;
-
-      ft.download(uri, path,
-          function done(entry) {
-            cordova.plugins.bridge.open(entry.toURL(), success, error);
-          },
-          function fail(error) {
-            console.log('download error', error);
-          },
-          false
-      );
-    }
-  }
-
   createActionButton('Open Image', function() {
-    downloadAndOpen('https://raw.githubusercontent.com/cordova-bridge/open/test/test.png');
+    cordova.plugins.bridge.open(
+      'https://raw.githubusercontent.com/cordova-bridge/open/test/test.png',
+      success, error);
   }, 'open-file');
 
   createActionButton('Open PDF', function() {
-    downloadAndOpen('https://raw.githubusercontent.com/cordova-bridge/open/test/test.pdf');
+    cordova.plugins.bridge.open(
+      'https://raw.githubusercontent.com/cordova-bridge/open/test/test.pdf',
+      success, error);
   }, 'open-file');
 };

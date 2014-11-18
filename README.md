@@ -3,7 +3,7 @@ open
 
 Open documents with compatible applications installed on the user's device.
 
-![Open](https://raw.githubusercontent.com/cordova-bridge/open/docs/open.png =300x "Open")
+<img src="https://raw.githubusercontent.com/cordova-bridge/open/docs/open.png" width="300px" />
 
 ## Install
 
@@ -21,7 +21,7 @@ cordova.plugins.bridge.open(file, success, error)
 
 #### Parameters:
 
-* __file:__ A string representing a local URI
+* __file:__ A string representing a URI
 * __success:__ Optional success callback
 * __error:__ Optional error callback
 
@@ -30,7 +30,11 @@ cordova.plugins.bridge.open(file, success, error)
 #### Default usage
 
 ```javascript
-cordova.plugins.bridge.open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg');
+// with a file uri
+cordova.plugins.bridge.open('file:/storage/sdcard/dcim/camera/1404177327783.jpg');
+
+// with a remote url
+cordova.plugins.bridge.open('https://raw.githubusercontent.com/cordova-bridge/open/test/test.png');
 ```
 
 #### With optional callbacks
@@ -51,27 +55,4 @@ function error(code) {
 }
 
 open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error);
-```
-
-#### Handling remote files
-
-The plugin does not natively support remote files directly, but can be paired with `org.apache.cordova.file-transfer`:
-
-```javascript
-var ft = new FileTransfer(),
-    url = fileUrl,
-    filename = url.substring(url.lastIndexOf('/') + 1),
-    uri = encodeURI(url),
-    dir = (cordova.file.tempDirectory) ? 'tempDirectory' : 'externalCacheDirectory', // ios : android
-    path = cordova.file[dir] + filename;
-
-ft.download(uri, path,
-    function done(entry) {
-      cordova.plugins.bridge.open(entry.toURL(), success, error);
-    },
-    function fail(error) {
-      console.log('download error', error);
-    },
-    false
-);
 ```
