@@ -42,7 +42,7 @@ exports.open = function(uri, success, error) {
     ft.download(url, path,
         function done(entry) {
           var file = entry.toURL();
-          exec(onSuccess, onError, 'Open', 'open', [file]);
+          exec(onSuccess.bind(this, file), onError, 'Open', 'open', [file]);
         },
         onError,
         false
@@ -52,6 +52,6 @@ exports.open = function(uri, success, error) {
   if (uri.match('http')) {
     downloadAndOpen(uri);
   } else {
-    exec(onSuccess, onError, 'Open', 'open', [uri]);
+    exec(onSuccess.bind(this, uri), onError, 'Open', 'open', [uri]);
   }
 };
