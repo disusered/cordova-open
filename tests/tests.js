@@ -38,10 +38,10 @@ exports.defineManualTests = function(contentEl, createActionButton) {
   }
 
   function downloadAndOpen(fileUrl, directory) {
-    var dir = directory || 'cacheDirectory';
     document.addEventListener('deviceready', onDeviceReady, false);
     function onDeviceReady() {
-      var ft = new FileTransfer(),
+      var dir = (cordova.file.tempDirectory) ? 'tempDirectory' : 'externalCacheDirectory',
+          ft = new FileTransfer(),
           url = fileUrl,
           filename = url.substring(url.lastIndexOf('/') + 1),
           uri = encodeURI(url),
