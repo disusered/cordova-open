@@ -48,13 +48,13 @@ exports.defineManualTests = function(contentEl, createActionButton) {
           path = cordova.file[dir] + filename;
 
       ft.download(uri, path,
-          function done(entry) {
-            cordova.plugins.bridge.open(entry.toURL(), success, error);
-          },
-          function fail(error) {
-            console.log('download error', error);
-          },
-          false
+        function done(entry) {
+          cordova.plugins.bridge.open(entry.toURL(), success, error);
+        },
+        function fail(error) {
+          console.log('download error', error);
+        },
+        false
       );
     }
   }
