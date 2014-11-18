@@ -31,13 +31,13 @@ exports.open = function(uri, success, error) {
 
   uri = encodeURI(uri);
 
-  function onDeviceReady() {
+  function downloadAndOpen(url) {
     var dir = (cordova.file.tempDirectory) ? 'tempDirectory' : 'externalCacheDirectory',
         ft = new FileTransfer(),
-        filename = uri.substring(uri.lastIndexOf('/') + 1),
+        filename = url.substring(url.lastIndexOf('/') + 1),
         path = cordova.file[dir] + filename;
 
-    ft.download(uri, path,
+    ft.download(url, path,
         function done(entry) {
           var file = entry.toURL();
           exec(onSuccess, onError, 'Open', 'open', [file]);
@@ -48,7 +48,7 @@ exports.open = function(uri, success, error) {
   }
 
   if (uri.match('http')) {
-    document.addEventListener('deviceready', onDeviceReady, false);
+    downloadAndOpen(uri);
   } else {
     exec(onSuccess, onError, 'Open', 'open', [uri]);
   }
