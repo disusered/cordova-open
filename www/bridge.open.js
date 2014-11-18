@@ -31,5 +31,25 @@ exports.open = function(uri, success, error) {
 
   uri = encodeURI(uri);
 
-  exec(onSuccess, onError, 'Open', 'open', [uri]);
+  function onDeviceReady() {
+    var dir = (cordova.file.tempDirectory) ? 'tempDirectory' : 'externalCacheDirectory',
+        ft = new FileTransfer(),
+        filename = uri.substring(uri.lastIndexOf('/') + 1),
+        path = cordova.file[dir] + filename;
+
+    ft.download(uri, path,
+        function done(entry) {
+          var file = entry.toURL();
+          exec(onSuccess, onError, 'Open', 'open', [file]);
+        },
+        onError,
+        false
+    );
+  }
+
+  if (uri.match('http')) {
+    document.addEventListener('deviceready', onDeviceReady, false);
+  } else {
+    exec(onSuccess, onError, 'Open', 'open', [uri]);
+  }
 };
