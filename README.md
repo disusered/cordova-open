@@ -52,3 +52,26 @@ function error(code) {
 
 open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error);
 ```
+
+#### Handling remote files
+
+The plugin does not natively support remote files directly, but can be paired with `org.apache.cordova.file-transfer`:
+
+```javascript
+var ft = new FileTransfer(),
+    url = fileUrl,
+    filename = url.substring(url.lastIndexOf('/') + 1),
+    uri = encodeURI(url),
+    dir = (cordova.file.tempDirectory) ? 'tempDirectory' : 'externalCacheDirectory', // ios : android
+    path = cordova.file[dir] + filename;
+
+ft.download(uri, path,
+    function done(entry) {
+      cordova.plugins.bridge.open(entry.toURL(), success, error);
+    },
+    function fail(error) {
+      console.log('download error', error);
+    },
+    false
+);
+```
