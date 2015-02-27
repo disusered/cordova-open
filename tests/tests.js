@@ -19,9 +19,9 @@ exports.defineAutoTests = function() {
 exports.defineManualTests = function(contentEl, createActionButton) {
   var testInfo;
 
-  testInfo = '<h3>Press Open File and a test file will open in a native context</h3>' +
-      '<div id="open-file"></div>' +
-      'Expected result: File will open in native modal.';
+  testInfo = '<h3>Press Open File and a test file will open in a ' +
+    'native context</h3><div id="open-file"></div>' +
+    'Expected result: File will open in native modal.';
 
   contentEl.innerHTML = testInfo;
 
