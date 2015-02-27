@@ -25,4 +25,4 @@ test:
   - cd /home/ubuntu/test && cordova build android
   - ./bin/wait.sh:
       parallel: true
-  - $ANDROID_HOME/platform-tools/adb install test/platforms/android/ant-build/CordovaApp-debug.apk
+  - $ANDROID_HOME/platform-tools/adb install /home/ubuntu/test/platforms/android/ant-build/CordovaApp-debug.apk
