@@ -18,25 +18,13 @@ var exec = require('cordova/exec');
 exports.open = function(uri, success, error) {
   if (!uri || arguments.length === 0) { return false; }
 
-  function onSuccess(path) {
-    fire('success');
-    if (typeof success === 'function') { success(path); }
-    return path;
-  }
-
-  function onError(code) {
-    fire('error');
-    code = code || 0;
-    if (typeof error === 'function') { error(code); }
-    return code;
-  }
-
   uri = encodeURI(uri);
 
   if (uri.match('http')) {
-    downloadAndOpen(uri);
+    downloadAndOpen(uri, success, error);
   } else {
-    exec(onSuccess.bind(this, uri), onError, 'Open', 'open', [uri]);
+    exec(onSuccess.bind(this, uri, success),
+         onError.bind(this, error), 'Open', 'open', [uri]);
   }
 };
 
@@ -44,8 +32,10 @@ exports.open = function(uri, success, error) {
  * downloadAndOpen
  *
  * @param {String} url File URI
+ * @param {Function} success Success callback
+ * @param {Function} error Failure callback
  */
-function downloadAndOpen(url) {
+function downloadAndOpen(url, success, error) {
   var ft = new FileTransfer();
   var ios = cordova.file.cacheDirectory;
   var ext = cordova.file.externalCacheDirectory;
@@ -56,11 +46,39 @@ function downloadAndOpen(url) {
   ft.download(url, path,
       function done(entry) {
         var file = entry.toURL();
-        exec(onSuccess.bind(this, file), onError, 'Open', 'open', [file]);
+        exec(onSuccess.bind(this, file, success),
+             onError.bind(this, error), 'Open', 'open', [file]);
       },
       onError,
       false
   );
+}
+
+/**
+ * onSuccess
+ *
+ * @param {String} path File URI
+ * @param {Function} callback Callback
+ * @return {String} File URI
+ */
+function onSuccess(path, callback) {
+  fire('success');
+  if (typeof callback === 'function') { callback(path); }
+  return path;
+}
+
+/**
+ * onError
+ *
+ * @param {String} path File URI
+ * @param {Function} callback Callback
+ * @return {Number} Error code
+ */
+function onError(code, callback) {
+  fire('error');
+  code = code || 0;
+  if (typeof callback === 'function') { callback(code); }
+  return code;
 }
 
 /**
