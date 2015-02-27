@@ -19,11 +19,13 @@ exports.open = function(uri, success, error) {
   if (!uri || arguments.length === 0) { return false; }
 
   function onSuccess(path) {
+    fire('success');
     if (typeof success === 'function') { success(path); }
     return path;
   }
 
   function onError(code) {
+    fire('error');
     code = code || 0;
     if (typeof error === 'function') { error(code); }
     return code;
@@ -55,3 +57,18 @@ exports.open = function(uri, success, error) {
     exec(onSuccess.bind(this, uri), onError, 'Open', 'open', [uri]);
   }
 };
+
+/**
+ * fire
+ *
+ * @param {String} event Event name
+ */
+
+function fire(event) {
+  var channel = require('cordova/channel');
+  var cordova = require('cordova');
+
+  channel.onCordovaReady.subscribe(function() {
+    cordova.fireDocumentEvent('open.' + event);
+  });
+}
