@@ -3,7 +3,7 @@ open
 
 Open documents with compatible applications installed on the user's device.
 
-<img src="https://raw.githubusercontent.com/cordova-bridge/open/docs/open.png" width="300px" />
+<img src="https://raw.githubusercontent.com/disusered/cordova-open/docs/open.png" width="300px" />
 
 ## Install
 
@@ -34,7 +34,7 @@ cordova.plugins.bridge.open(file, success, error)
 cordova.plugins.bridge.open('file:/storage/sdcard/dcim/camera/1404177327783.jpg');
 
 // with a remote url
-cordova.plugins.bridge.open('https://raw.githubusercontent.com/cordova-bridge/open/test/test.png');
+cordova.plugins.bridge.open('https://raw.githubusercontent.com/disusered/cordova-open/test/test.png');
 ```
 
 #### With optional callbacks

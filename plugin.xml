@@ -4,8 +4,8 @@
   <description>Open audio, video, images and more with applications installed on the user's device</description>
   <license>GPLv2</license>
   <keywords>cordova,file,open,intent,video,audio,image,photo,pdf</keywords>
-  <repo>https://github.com/cordova-bridge/open</repo>
-  <issue>https://github.com/cordova-bridge/open/issues</issue>
+  <repo>https://github.com/disusered/cordova-open</repo>
+  <issue>https://github.com/disusered/cordova-open/issues</issue>
   <js-module name="Open" src="www/bridge.open.js">
     <merges target="cordova.plugins.bridge"/>
   </js-module>

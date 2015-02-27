@@ -39,13 +39,13 @@ exports.defineManualTests = function(contentEl, createActionButton) {
 
   createActionButton('Open Image', function() {
     cordova.plugins.bridge.open(
-      'https://raw.githubusercontent.com/cordova-bridge/open/test/test.png',
+      'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png',
       success, error);
   }, 'open-file');
 
   createActionButton('Open PDF', function() {
     cordova.plugins.bridge.open(
-      'https://raw.githubusercontent.com/cordova-bridge/open/test/test.pdf',
+      'https://raw.githubusercontent.com/disusered/cordova-open/test/test.pdf',
       success, error);
   }, 'open-file');
 };
