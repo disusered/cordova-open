@@ -23,8 +23,8 @@ exports.open = function(uri, success, error) {
   if (uri.match('http')) {
     downloadAndOpen(uri, success, error);
   } else {
-    exec(onSuccess.bind(this, uri, success),
-         onError.bind(this, error), 'Open', 'open', [uri]);
+    exec(onSuccess(uri, success),
+         onError(error), 'Open', 'open', [uri]);
   }
 };
 
@@ -46,8 +46,8 @@ function downloadAndOpen(url, success, error) {
   ft.download(url, path,
       function done(entry) {
         var file = entry.toURL();
-        exec(onSuccess.bind(this, file, success),
-             onError.bind(this, error), 'Open', 'open', [file]);
+        exec(onSuccess(file, success),
+             onError(error), 'Open', 'open', [file]);
       },
       onError,
       false
