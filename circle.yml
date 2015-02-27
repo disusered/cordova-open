@@ -1,0 +1,27 @@
+machine:
+  node:
+    version: 0.10.22
+  environment:
+    ANDROID_HOME: /home/ubuntu/android
+dependencies:
+  cache_directories:
+    - ~/.android
+    - ~/android
+  pre:
+    - npm install -g cordova
+  post:
+    - cordova create test com.bridge.test Test
+    - cd test
+    - cordova platform add android
+    - cordova plugin add http://git-wip-us.apache.org/repos/asf/cordova-plugin-test-framework.git
+    - cordova plugin add ./
+    - cordova plugin add ./tests
+test:
+  override:
+  - $ANDROID_HOME/tools/emulator -avd testing -no-window -no-boot-anim -no-audio:
+      background: true
+      parallel: true
+  - cordova build android
+  - ./bin/wait.sh:
+      parallel: true
+  - adb install platforms/android/ant-build/CordovaApp-debug.apk
