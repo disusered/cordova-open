@@ -33,24 +33,6 @@ exports.open = function(uri, success, error) {
 
   uri = encodeURI(uri);
 
-  function downloadAndOpen(url) {
-    var ft = new FileTransfer();
-    var ios = cordova.file.cacheDirectory;
-    var ext = cordova.file.externalCacheDirectory;
-    var dir = (ext) ?  ext : ios;
-    var name = url.substring(url.lastIndexOf('/') + 1);
-    var path = dir + name;
-
-    ft.download(url, path,
-        function done(entry) {
-          var file = entry.toURL();
-          exec(onSuccess.bind(this, file), onError, 'Open', 'open', [file]);
-        },
-        onError,
-        false
-    );
-  }
-
   if (uri.match('http')) {
     downloadAndOpen(uri);
   } else {
@@ -59,11 +41,33 @@ exports.open = function(uri, success, error) {
 };
 
 /**
+ * downloadAndOpen
+ *
+ * @param {String} url File URI
+ */
+function downloadAndOpen(url) {
+  var ft = new FileTransfer();
+  var ios = cordova.file.cacheDirectory;
+  var ext = cordova.file.externalCacheDirectory;
+  var dir = (ext) ?  ext : ios;
+  var name = url.substring(url.lastIndexOf('/') + 1);
+  var path = dir + name;
+
+  ft.download(url, path,
+      function done(entry) {
+        var file = entry.toURL();
+        exec(onSuccess.bind(this, file), onError, 'Open', 'open', [file]);
+      },
+      onError,
+      false
+  );
+}
+
+/**
  * fire
  *
  * @param {String} event Event name
  */
-
 function fire(event) {
   var channel = require('cordova/channel');
   var cordova = require('cordova');
