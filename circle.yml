@@ -4,9 +4,6 @@ machine:
   environment:
     ANDROID_HOME: /home/ubuntu/android
 dependencies:
-  cache_directories:
-    - ~/.android
-    - ~/android
   pre:
     - npm install -g cordova
   post:
