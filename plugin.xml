@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.open" version="0.3.0">
   <name>Open</name>
-  <description>Open documents with compatible applications installed on the user's device.</description>
+  <description>Open audio, video, images and more with applications installed on the user's device</description>
   <license>GPLv2</license>
-  <keywords>cordova,file,open,intent</keywords>
+  <keywords>cordova,file,open,intent,video,audio,image,photo,pdf</keywords>
   <repo>https://github.com/cordova-bridge/open</repo>
   <issue>https://github.com/cordova-bridge/open/issues</issue>
   <js-module name="Open" src="www/bridge.open.js">
