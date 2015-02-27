@@ -3,7 +3,7 @@ open
 
 [![Circle CI](https://circleci.com/gh/disusered/cordova-open.svg?style=shield&circle-token=6bd6b31455ee9ce4602f9b1ed980c872b10d7507)](https://circleci.com/gh/disusered/cordova-open)
 
-Open documents with compatible applications installed on the user's device.
+Open audio, video, images and more with applications installed on the user's device
 
 <img src="https://raw.githubusercontent.com/disusered/cordova-open/docs/open.png" width="300px" />
 
