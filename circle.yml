@@ -13,8 +13,8 @@ dependencies:
     - cordova create /home/ubuntu/test com.bridge.test Test
     - cd /home/ubuntu/test && cordova platform add android
     - cd /home/ubuntu/test && cordova plugin add http://git-wip-us.apache.org/repos/asf/cordova-plugin-test-framework.git
-    - cd /home/ubuntu/test && cordova plugin add ./cordova-open
-    - cd /home/ubuntu/test && cordova plugin add ./cordova-open/tests
+    - cd /home/ubuntu/test && cordova plugin add ../cordova-open
+    - cd /home/ubuntu/test && cordova plugin add ../cordova-open/tests
 test:
   override:
   - $ANDROID_HOME/tools/emulator -avd testing -no-window -no-boot-anim -no-audio:
