@@ -4,6 +4,11 @@ machine:
   environment:
     ANDROID_HOME: /home/ubuntu/android
 dependencies:
+  cache_directories:
+    - ~/.android
+    - ~/android
+  override:
+    - ./bin/deps.sh
   pre:
     - npm install -g cordova
   post:
