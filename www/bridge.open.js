@@ -16,28 +16,28 @@ var exec = require('cordova/exec');
  * @param {Function} error Failure callback
  */
 exports.open = function(uri, success, error) {
-  if (!uri || arguments.length === 0) return false;
+  if (!uri || arguments.length === 0) { return false; }
 
   function onSuccess(path) {
-    if (typeof success === 'function') success(path);
+    if (typeof success === 'function') { success(path); }
     return path;
   }
 
   function onError(code) {
     code = code || 0;
-    if (typeof error === 'function') error(code);
+    if (typeof error === 'function') { error(code); }
     return code;
   }
 
   uri = encodeURI(uri);
 
   function downloadAndOpen(url) {
-    var ft = new FileTransfer(),
-        ios = cordova.file.cacheDirectory,
-        ext = cordova.file.externalCacheDirectory,
-        dir = (ext) ?  ext : ios,
-        name = url.substring(url.lastIndexOf('/') + 1),
-        path = dir + name;
+    var ft = new FileTransfer();
+    var ios = cordova.file.cacheDirectory;
+    var ext = cordova.file.externalCacheDirectory;
+    var dir = (ext) ?  ext : ios;
+    var name = url.substring(url.lastIndexOf('/') + 1);
+    var path = dir + name;
 
     ft.download(url, path,
         function done(entry) {
