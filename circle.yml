@@ -20,7 +20,7 @@ test:
   - $ANDROID_HOME/tools/emulator -avd testing -no-window -no-boot-anim -no-audio:
       background: true
       parallel: true
-  - cordova build android
+  - cd /home/ubuntu/test && cordova build android
   - ./bin/wait.sh:
       parallel: true
-  - adb install platforms/android/ant-build/CordovaApp-debug.apk
+  - $ANDROID_HOME/platform-tools/adb install test/platforms/android/ant-build/CordovaApp-debug.apk
