@@ -70,15 +70,19 @@ function onSuccess(path, callback) {
 /**
  * onError
  *
- * @param {String} path File URI
+ * @param {*} error Error
  * @param {Function} callback Callback
- * @return {Number} Error code
+ * @return {*} Error
  */
-function onError(code, callback) {
+function onError(error, callback) {
   fire('error');
-  code = code || 0;
-  if (typeof callback === 'function') { callback(code); }
-  return code;
+  var code = (error === 1) ? 1 : 0;
+  if (typeof error === 'function') {
+    error(code);
+  } else if (typeof callback === 'function') {
+    callback(code);
+  }
+  return error;
 }
 
 /**
