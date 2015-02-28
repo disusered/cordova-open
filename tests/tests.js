@@ -27,31 +27,38 @@ exports.defineManualTests = function(contentEl, createActionButton) {
 
   function success() {
     console.log('Successfully opened file!');
+    removeEventListeners();
   }
 
   function error(code) {
-    if (code === 1) {
+    if (code.data === 1 || code === 1) {
       console.log('No file handler found');
     } else {
       console.log('Undefined error');
     }
+    removeEventListeners();
   }
 
-  document.addEventListener('open.success', success, false);
-  document.addEventListener('open.error', error, false);
+  function addEventListeners() {
+    document.addEventListener('open.success', success, false);
+    document.addEventListener('open.error', error, false);
+  }
+
+  function removeEventListeners() {
+    document.removeEventListener('open.success', success, false);
+    document.removeEventListener('open.error', error, false);
+  }
 
   createActionButton('Success Events', function() {
+    addEventListeners();
     cordova.plugins.bridge.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png');
   }, 'open-file');
 
-  createActionButton('No File Handler Events', function() {
+  createActionButton('Error events', function() {
+    addEventListeners();
     cordova.plugins.bridge.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.xyz');
-  }, 'open-file');
-
-  createActionButton('Undefined Error Events', function() {
-    cordova.plugins.bridge.open('ht:/somemalformedurl.com/test.png');
   }, 'open-file');
 
   createActionButton('Open Image', function() {
