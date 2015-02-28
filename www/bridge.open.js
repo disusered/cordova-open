@@ -90,8 +90,12 @@ function onError(callback) {
 function fire(event, data) {
   var channel = require('cordova/channel');
   var cordova = require('cordova');
+  var payload = {};
 
   channel.onCordovaReady.subscribe(function() {
-    cordova.fireDocumentEvent('open.' + event, {data: data});
+    var name = 'open.' + event;
+    var prop = (event === 'error') ? event : 'data';
+    payload[prop] = data;
+    cordova.fireDocumentEvent(name, payload);
   });
 }
