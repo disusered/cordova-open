@@ -70,19 +70,17 @@ function onSuccess(path, callback) {
 /**
  * onError
  *
- * @param {*} error Error
  * @param {Function} callback Callback
- * @return {*} Error
+ * @return {Number} Error Code
  */
-function onError(error, callback) {
-  var code = (error === 1) ? 1 : 0;
+function onError(callback) {
+  var code = (arguments.length > 1) ? arguments[1] : 0;
+
   fire('error', code);
-  if (typeof error === 'function') {
-    error(code);
-  } else if (typeof callback === 'function') {
-    callback(code);
-  }
-  return error;
+
+  if (typeof callback === 'function') { callback(code); }
+
+  return code;
 }
 
 /**
@@ -95,6 +93,6 @@ function fire(event, data) {
   var cordova = require('cordova');
 
   channel.onCordovaReady.subscribe(function() {
-    cordova.fireDocumentEvent('open.' + event, data);
+    cordova.fireDocumentEvent('open.' + event, {data: data});
   });
 }
