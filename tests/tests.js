@@ -19,33 +19,57 @@ exports.defineAutoTests = function() {
 exports.defineManualTests = function(contentEl, createActionButton) {
   var testInfo;
 
-  testInfo = '<h3>Press Open File and a test file will open in a native context</h3>' +
-      '<div id="open-file"></div>' +
-      'Expected result: File will open in native modal.';
+  testInfo = '<h3>Press Open File and a test file will open in a ' +
+    'native context</h3><div id="open-file"></div>' +
+    'Expected result: File will open in native modal.';
 
   contentEl.innerHTML = testInfo;
 
   function success() {
     console.log('Successfully opened file!');
+    removeEventListeners();
   }
 
   function error(code) {
-    if (code === 1) {
+    if (code.error === 1 || code === 1) {
       console.log('No file handler found');
     } else {
       console.log('Undefined error');
     }
+    removeEventListeners();
   }
+
+  function addEventListeners() {
+    document.addEventListener('open.success', success, false);
+    document.addEventListener('open.error', error, false);
+  }
+
+  function removeEventListeners() {
+    document.removeEventListener('open.success', success, false);
+    document.removeEventListener('open.error', error, false);
+  }
+
+  createActionButton('Success Events', function() {
+    addEventListeners();
+    cordova.plugins.bridge.open(
+      'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png');
+  }, 'open-file');
+
+  createActionButton('Error events', function() {
+    addEventListeners();
+    cordova.plugins.bridge.open(
+      'https://raw.githubusercontent.com/disusered/cordova-open/test/test.xyz');
+  }, 'open-file');
 
   createActionButton('Open Image', function() {
     cordova.plugins.bridge.open(
-      'https://raw.githubusercontent.com/cordova-bridge/open/test/test.png',
+      'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png',
       success, error);
   }, 'open-file');
 
   createActionButton('Open PDF', function() {
     cordova.plugins.bridge.open(
-      'https://raw.githubusercontent.com/cordova-bridge/open/test/test.pdf',
+      'https://raw.githubusercontent.com/disusered/cordova-open/test/test.pdf',
       success, error);
   }, 'open-file');
 };
