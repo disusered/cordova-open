@@ -45,6 +45,15 @@ exports.defineManualTests = function(contentEl, createActionButton) {
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png');
   }, 'open-file');
 
+  createActionButton('No File Handler Events', function() {
+    cordova.plugins.bridge.open(
+      'https://raw.githubusercontent.com/disusered/cordova-open/test/test.xyz');
+  }, 'open-file');
+
+  createActionButton('Undefined Error Events', function() {
+    cordova.plugins.bridge.open('ht:/somemalformedurl.com/test.png');
+  }, 'open-file');
+
   createActionButton('Open Image', function() {
     cordova.plugins.bridge.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png',
