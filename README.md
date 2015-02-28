@@ -22,10 +22,15 @@ cordova.plugins.bridge.open(file, success, error)
 ```
 
 #### Parameters:
-
 * __file:__ A string representing a URI
 * __success:__ Optional success callback
 * __error:__ Optional error callback
+
+#### Events:
+* __pause:__ Opening files emits Cordova's pause event
+* __resume:__ Closing the file emits Cordova's resume event
+* __open.success:__ File is found and can be opened
+* __open.error:__ File not found, or no file handler is installed
 
 ## Example
 
