@@ -62,7 +62,7 @@ function downloadAndOpen(url, success, error) {
  * @return {String} File URI
  */
 function onSuccess(path, callback) {
-  fire('success');
+  fire('success', path);
   if (typeof callback === 'function') { callback(path); }
   return path;
 }
