@@ -37,6 +37,14 @@ exports.defineManualTests = function(contentEl, createActionButton) {
     }
   }
 
+  document.addEventListener('open.success', success, false);
+  document.addEventListener('open.error', error, false);
+
+  createActionButton('Success Events', function() {
+    cordova.plugins.bridge.open(
+      'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png');
+  }, 'open-file');
+
   createActionButton('Open Image', function() {
     cordova.plugins.bridge.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png',
