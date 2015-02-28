@@ -31,7 +31,7 @@ exports.defineManualTests = function(contentEl, createActionButton) {
   }
 
   function error(code) {
-    if (code.data === 1 || code === 1) {
+    if (code.error === 1 || code === 1) {
       console.log('No file handler found');
     } else {
       console.log('Undefined error');
