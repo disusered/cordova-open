@@ -63,7 +63,9 @@ function downloadAndOpen(url, success, error) {
  */
 function onSuccess(path, callback) {
   fire('success', path);
-  if (typeof callback === 'function') { callback(path); }
+  if (typeof callback === 'function') {
+    callback(path);
+  }
   return path;
 }
 
