@@ -75,8 +75,8 @@ function onSuccess(path, callback) {
  * @return {*} Error
  */
 function onError(error, callback) {
-  fire('error');
   var code = (error === 1) ? 1 : 0;
+  fire('error', code);
   if (typeof error === 'function') {
     error(code);
   } else if (typeof callback === 'function') {
@@ -90,11 +90,11 @@ function onError(error, callback) {
  *
  * @param {String} event Event name
  */
-function fire(event) {
+function fire(event, data) {
   var channel = require('cordova/channel');
   var cordova = require('cordova');
 
   channel.onCordovaReady.subscribe(function() {
-    cordova.fireDocumentEvent('open.' + event);
+    cordova.fireDocumentEvent('open.' + event, data);
   });
 }
