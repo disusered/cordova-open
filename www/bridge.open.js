@@ -88,6 +88,7 @@ function onError(callback) {
  * fire
  *
  * @param {String} event Event name
+ * @param {String} data Success or error data
  */
 function fire(event, data) {
   var channel = require('cordova/channel');
