@@ -75,11 +75,10 @@ function onSuccess(path, callback) {
  */
 function onError(callback) {
   var code = (arguments.length > 1) ? arguments[1] : 0;
-
   fire('error', code);
-
-  if (typeof callback === 'function') { callback(code); }
-
+  if (typeof callback === 'function') {
+    callback(code);
+  }
   return code;
 }
 
