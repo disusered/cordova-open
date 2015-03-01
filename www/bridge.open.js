@@ -1,9 +1,8 @@
 /**
  * @title Open - cordova.plugins.bridge.open
  * @overview Open documents with compatible apps.
- * @copyright © 2015 cordova-bridge
- * @license GPLv2
  * @author Carlos Antonio
+ * @license GPLv2
 */
 
 var exec = require('cordova/exec');
