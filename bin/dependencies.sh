@@ -17,3 +17,4 @@ cordova plugin add \
 
 # Add plugin and tests
 cordova plugin add $TRAVIS_BUILD_DIR
+cordova plugin add $TRAVIS_BUILD_DIR/tests

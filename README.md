@@ -3,7 +3,7 @@ open
 
 [![Build Status](https://travis-ci.org/disusered/cordova-open.svg)](https://travis-ci.org/disusered/cordova-open) [![Code Climate](https://codeclimate.com/github/disusered/cordova-open/badges/gpa.svg)](https://codeclimate.com/github/disusered/cordova-open) 
 
-Open audio, video, images and more with applications installed on the user's device
+Open audio, video, images and more with applications installed on the user's device.
 
 <img src="https://raw.githubusercontent.com/disusered/cordova-open/docs/open.png" width="300px" />
 
@@ -18,13 +18,14 @@ $ cordova plugin add com.bridge.open
 The plugin exposes the following methods:
 
 ```javascript
-cordova.plugins.bridge.open(file, success, error)
+cordova.plugins.bridge.open(file, success, error, trustAllCertificates)
 ```
 
 #### Parameters:
 * __file:__ A string representing a URI
 * __success:__ Optional success callback
 * __error:__ Optional error callback
+* __trustAllCertificates:__ Optional, trusts any certificate when the connection is done over HTTPS.
 
 #### Events:
 * __pause:__ Opening files emits Cordova's pause event

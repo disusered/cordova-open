@@ -1,5 +1,6 @@
 /**
- * @title Open - cordova.plugins.bridge.open
+ * bridge.open.js
+ *
  * @overview Open documents with compatible apps.
  * @author Carlos Antonio
  * @license GPLv2
@@ -13,14 +14,15 @@ var exec = require('cordova/exec');
  * @param {String} args File URI
  * @param {Function} success Success callback
  * @param {Function} error Failure callback
+ * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
  */
-exports.open = function(uri, success, error) {
+exports.open = function(uri, success, error, trustAllCertificates) {
   if (!uri || arguments.length === 0) { return false; }
 
   uri = encodeURI(uri);
 
   if (uri.match('http')) {
-    downloadAndOpen(uri, success, error);
+    downloadAndOpen(uri, success, error, trustAllCertificates);
   } else {
     exec(onSuccess.bind(this, uri, success),
          onError.bind(this, error), 'Open', 'open', [uri]);
@@ -33,14 +35,20 @@ exports.open = function(uri, success, error) {
  * @param {String} url File URI
  * @param {Function} success Success callback
  * @param {Function} error Failure callback
+ * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
  */
-function downloadAndOpen(url, success, error) {
+function downloadAndOpen(url, success, error, trustAllCertificates) {
   var ft = new FileTransfer();
   var ios = cordova.file.cacheDirectory;
   var ext = cordova.file.externalCacheDirectory;
-  var dir = (ext) ?  ext : ios;
+  var dir = (ext) ? ext : ios;
   var name = url.substring(url.lastIndexOf('/') + 1);
   var path = dir + name;
+
+  if (typeof trustAllCertificates !== 'boolean') {
+    // Defaults to false
+    trustAllCertificates = false;
+  }
 
   ft.download(url, path,
       function done(entry) {
@@ -49,7 +57,7 @@ function downloadAndOpen(url, success, error) {
              onError.bind(this, error), 'Open', 'open', [file]);
       },
       onError.bind(this, error),
-      false
+      trustAllCertificates
   );
 }
 
