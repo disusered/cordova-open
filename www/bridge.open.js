@@ -17,16 +17,16 @@ var exec = require('cordova/exec');
  * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS - avoid this in production -
  */
 exports.open = function (uri, success, error, trustAllCertificates) {
-    if (!uri || arguments.length === 0) { return false; }
+  if (!uri || arguments.length === 0) { return false; }
 
-    uri = encodeURI(uri);
+  uri = encodeURI(uri);
 
-    if (uri.match('http')) {
-        downloadAndOpen(uri, success, error, trustAllCertificates);
-    } else {
-        exec(onSuccess.bind(this, uri, success),
-             onError.bind(this, error), 'Open', 'open', [uri]);
-    }
+  if (uri.match('http')) {
+    downloadAndOpen(uri, success, error, trustAllCertificates);
+  } else {
+    exec(onSuccess.bind(this, uri, success),
+         onError.bind(this, error), 'Open', 'open', [uri]);
+  }
 };
 
 /**
@@ -38,27 +38,27 @@ exports.open = function (uri, success, error, trustAllCertificates) {
  * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS - avoid this in production -
  */
 function downloadAndOpen(url, success, error, trustAllCertificates) {
-    var ft = new FileTransfer();
-    var ios = cordova.file.cacheDirectory;
-    var ext = cordova.file.externalCacheDirectory;
-    var dir = (ext) ? ext : ios;
-    var name = url.substring(url.lastIndexOf('/') + 1);
-    var path = dir + name;
+  var ft = new FileTransfer();
+  var ios = cordova.file.cacheDirectory;
+  var ext = cordova.file.externalCacheDirectory;
+  var dir = (ext) ? ext : ios;
+  var name = url.substring(url.lastIndexOf('/') + 1);
+  var path = dir + name;
 
-    if (typeof trustAllCertificates != "boolean") {
-        // Defaults to false
-        trustAllCertificates = false;
-    }
+  if (typeof trustAllCertificates != "boolean") {
+    // Defaults to false
+    trustAllCertificates = false;
+  }
 
-    ft.download(url, path,
-        function done(entry) {
-            var file = entry.toURL();
-            exec(onSuccess.bind(this, file, success),
-                 onError.bind(this, error), 'Open', 'open', [file]);
-        },
-        onError.bind(this, error),
-        trustAllCertificates
-    );
+  ft.download(url, path,
+      function done(entry) {
+        var file = entry.toURL();
+        exec(onSuccess.bind(this, file, success),
+             onError.bind(this, error), 'Open', 'open', [file]);
+      },
+      onError.bind(this, error),
+      trustAllCertificates
+  );
 }
 
 /**
@@ -69,11 +69,11 @@ function downloadAndOpen(url, success, error, trustAllCertificates) {
  * @return {String} File URI
  */
 function onSuccess(path, callback) {
-    fire('success', path);
-    if (typeof callback === 'function') {
-        callback(path);
-    }
-    return path;
+  fire('success', path);
+  if (typeof callback === 'function') {
+    callback(path);
+  }
+  return path;
 }
 
 /**
@@ -83,12 +83,12 @@ function onSuccess(path, callback) {
  * @return {Number} Error Code
  */
 function onError(callback) {
-    var code = (arguments.length > 1) ? arguments[1] : 0;
-    fire('error', code);
-    if (typeof callback === 'function') {
-        callback(code);
-    }
-    return code;
+  var code = (arguments.length > 1) ? arguments[1] : 0;
+  fire('error', code);
+  if (typeof callback === 'function') {
+    callback(code);
+  }
+  return code;
 }
 
 /**
@@ -98,14 +98,14 @@ function onError(callback) {
  * @param {String} data Success or error data
  */
 function fire(event, data) {
-    var channel = require('cordova/channel');
-    var cordova = require('cordova');
-    var payload = {};
+  var channel = require('cordova/channel');
+  var cordova = require('cordova');
+  var payload = {};
 
-    channel.onCordovaReady.subscribe(function () {
-        var name = 'open.' + event;
-        var prop = (event === 'error') ? event : 'data';
-        payload[prop] = data;
-        cordova.fireDocumentEvent(name, payload);
-    });
+  channel.onCordovaReady.subscribe(function () {
+    var name = 'open.' + event;
+    var prop = (event === 'error') ? event : 'data';
+    payload[prop] = data;
+    cordova.fireDocumentEvent(name, payload);
+  });
 }
