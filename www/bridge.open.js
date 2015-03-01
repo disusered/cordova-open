@@ -1,5 +1,6 @@
 /**
- * @title Open - cordova.plugins.bridge.open
+ * bridge.open.js
+ *
  * @overview Open documents with compatible apps.
  * @author Carlos Antonio
  * @license GPLv2
