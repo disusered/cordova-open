@@ -16,7 +16,7 @@ var exec = require('cordova/exec');
  * @param {Function} error Failure callback
  * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
  */
-exports.open = function (uri, success, error, trustAllCertificates) {
+exports.open = function(uri, success, error, trustAllCertificates) {
   if (!uri || arguments.length === 0) { return false; }
 
   uri = encodeURI(uri);
@@ -45,7 +45,7 @@ function downloadAndOpen(url, success, error, trustAllCertificates) {
   var name = url.substring(url.lastIndexOf('/') + 1);
   var path = dir + name;
 
-  if (typeof trustAllCertificates !== "boolean") {
+  if (typeof trustAllCertificates !== 'boolean') {
     // Defaults to false
     trustAllCertificates = false;
   }
@@ -102,7 +102,7 @@ function fire(event, data) {
   var cordova = require('cordova');
   var payload = {};
 
-  channel.onCordovaReady.subscribe(function () {
+  channel.onCordovaReady.subscribe(function() {
     var name = 'open.' + event;
     var prop = (event === 'error') ? event : 'data';
     payload[prop] = data;
