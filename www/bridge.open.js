@@ -45,7 +45,7 @@ function downloadAndOpen(url, success, error, trustAllCertificates) {
   var name = url.substring(url.lastIndexOf('/') + 1);
   var path = dir + name;
 
-  if (typeof trustAllCertificates != "boolean") {
+  if (typeof trustAllCertificates !== "boolean") {
     // Defaults to false
     trustAllCertificates = false;
   }
