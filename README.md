@@ -1,7 +1,7 @@
 open
 ====
 
-[![Circle CI](https://circleci.com/gh/disusered/cordova-open.svg?style=shield&circle-token=6bd6b31455ee9ce4602f9b1ed980c872b10d7507)](https://circleci.com/gh/disusered/cordova-open)
+[![Build Status](https://travis-ci.org/disusered/cordova-open.svg)](https://travis-ci.org/disusered/cordova-open) [![Code Climate](https://codeclimate.com/github/disusered/cordova-open/badges/gpa.svg)](https://codeclimate.com/github/disusered/cordova-open) 
 
 Open audio, video, images and more with applications installed on the user's device
 
