@@ -14,7 +14,7 @@ var exec = require('cordova/exec');
  * @param {String} args File URI
  * @param {Function} success Success callback
  * @param {Function} error Failure callback
- * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS - avoid this in production -
+ * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
  */
 exports.open = function (uri, success, error, trustAllCertificates) {
   if (!uri || arguments.length === 0) { return false; }
@@ -35,7 +35,7 @@ exports.open = function (uri, success, error, trustAllCertificates) {
  * @param {String} url File URI
  * @param {Function} success Success callback
  * @param {Function} error Failure callback
- * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS - avoid this in production -
+ * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
  */
 function downloadAndOpen(url, success, error, trustAllCertificates) {
   var ft = new FileTransfer();
