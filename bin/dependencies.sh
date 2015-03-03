@@ -5,7 +5,7 @@ set -ev
 npm install -g cordova
 
 # Create Cordova project
-cordova create $HOME/testApp com.bridge.test Test
+cordova create $HOME/testApp com.disusered.test Test
 cd $HOME/testApp
 
 # Install Android platform
