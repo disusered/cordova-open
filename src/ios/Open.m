@@ -42,16 +42,16 @@
           [[[UIApplication sharedApplication] keyWindow] rootViewController];
       [context presentViewController:previewCtrl animated:YES completion:nil];
 
-      NSLog(@"cordova.bridge.open - Success!");
+      NSLog(@"cordova.disusered.open - Success!");
       commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                         messageAsString:@""];
 
     } else {
-      NSLog(@"cordova.bridge.open - Invalid file URL");
+      NSLog(@"cordova.disusered.open - Invalid file URL");
       commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
   } else {
-    NSLog(@"cordova.bridge.open - Missing URL argument");
+    NSLog(@"cordova.disusered.open - Missing URL argument");
     commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
   }
 

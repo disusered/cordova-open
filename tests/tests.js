@@ -1,17 +1,17 @@
 exports.defineAutoTests = function() {
-  describe('Bridge plugin (cordova.plugins.bridge)', function() {
+  describe('disusered plugin (cordova.plugins.disusered)', function() {
     it('should exist', function() {
-      expect(window.cordova.plugins.bridge).toBeDefined();
+      expect(window.cordova.plugins.disusered).toBeDefined();
     });
   });
 
-  describe('Open method (cordova.plugins.bridge.open)', function() {
+  describe('Open method (cordova.plugins.disusered.open)', function() {
     it('should exist', function() {
-      expect(window.cordova.plugins.bridge.open).toBeDefined();
+      expect(window.cordova.plugins.disusered.open).toBeDefined();
     });
 
     it('should return false if run with no arguments', function() {
-      expect(window.cordova.plugins.bridge.open()).toBe(false);
+      expect(window.cordova.plugins.disusered.open()).toBe(false);
     });
   });
 };
@@ -51,24 +51,24 @@ exports.defineManualTests = function(contentEl, createActionButton) {
 
   createActionButton('Success Events', function() {
     addEventListeners();
-    cordova.plugins.bridge.open(
+    cordova.plugins.disusered.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png');
   }, 'open-file');
 
   createActionButton('Error events', function() {
     addEventListeners();
-    cordova.plugins.bridge.open(
+    cordova.plugins.disusered.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.xyz');
   }, 'open-file');
 
   createActionButton('Open Image', function() {
-    cordova.plugins.bridge.open(
+    cordova.plugins.disusered.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png',
       success, error);
   }, 'open-file');
 
   createActionButton('Open PDF', function() {
-    cordova.plugins.bridge.open(
+    cordova.plugins.disusered.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.pdf',
       success, error);
   }, 'open-file');

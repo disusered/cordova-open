@@ -10,7 +10,7 @@ Open audio, video, images and more with applications installed on the user's dev
 ## Install
 
 ```bash
-$ cordova plugin add com.bridge.open
+$ cordova plugin add com.disusered.open
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ $ cordova plugin add com.bridge.open
 The plugin exposes the following methods:
 
 ```javascript
-cordova.plugins.bridge.open(file, success, error, trustAllCertificates)
+cordova.plugins.disusered.open(file, success, error, trustAllCertificates)
 ```
 
 #### Parameters:
@@ -39,16 +39,16 @@ cordova.plugins.bridge.open(file, success, error, trustAllCertificates)
 
 ```javascript
 // with a file uri
-cordova.plugins.bridge.open('file:/storage/sdcard/dcim/camera/1404177327783.jpg');
+cordova.plugins.disusered.open('file:/storage/sdcard/dcim/camera/1404177327783.jpg');
 
 // with a remote url
-cordova.plugins.bridge.open('https://raw.githubusercontent.com/disusered/cordova-open/test/test.png');
+cordova.plugins.disusered.open('https://raw.githubusercontent.com/disusered/cordova-open/test/test.png');
 ```
 
 #### With optional callbacks
 
 ```javascript
-var open = cordova.plugins.bridge.open;
+var open = cordova.plugins.disusered.open;
 
 function success() {
   console.log('Success');

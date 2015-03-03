@@ -10,7 +10,7 @@
  *
  */
 
-package com.bridge;
+package com.disusered;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
