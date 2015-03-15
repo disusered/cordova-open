@@ -28,7 +28,7 @@
     "cordova-ios"
   ],
   "author": "Carlos Antonio",
-  "license": "GPLv2",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/disusered/cordova-open/issues"
   },

@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.disusered.open" version="1.0.1">
   <name>Open</name>
   <description>Open audio, video, images and more with applications installed on the user's device</description>
-  <license>GPLv2</license>
+  <license>MIT</license>
   <keywords>cordova,file,open,intent,video,audio,image,photo,pdf</keywords>
   <repo>https://github.com/disusered/cordova-open</repo>
   <issue>https://github.com/disusered/cordova-open/issues</issue>
