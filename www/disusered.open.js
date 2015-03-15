@@ -3,7 +3,7 @@
  *
  * @overview Open documents with compatible apps.
  * @author Carlos Antonio
- * @license GPLv2
+ * @license MIT
 */
 
 var exec = require('cordova/exec');
