@@ -23,7 +23,7 @@
 
   // Check command.arguments here.
   [self.commandDelegate runInBackground:^{
-    CDVPluginResult* commandResult = nil;
+    CDVPluginResult *commandResult = nil;
     NSString *path = [command.arguments objectAtIndex:0];
 
     if (path != nil && [path length] > 0) {
@@ -39,18 +39,26 @@
         QLPreviewController *previewCtrl = [[QLPreviewController alloc] init];
         previewCtrl.delegate = self;
         previewCtrl.dataSource = self;
-          
-        [previewCtrl.navigationItem setRightBarButtonItem:nil];
-          
-        [self.viewController presentViewController:previewCtrl animated:YES completion:nil];
 
-        NSLog(@"cordova.disusered.open - Success!");
-        commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                          messageAsString:@""];
+        BOOL canPreview = [QLPreviewController canPreviewItem:self.fileUrl];
+
+        if (canPreview) {
+          [self.viewController presentViewController:previewCtrl
+                                            animated:YES
+                                          completion:nil];
+          NSLog(@"cordova.disusered.open - Success!");
+          commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                            messageAsString:@""];
+        } else {
+          NSLog(@"cordova.disusered.open - Unable to preview file");
+          commandResult =
+              [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        }
 
       } else {
         NSLog(@"cordova.disusered.open - Invalid file URL");
-        commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        commandResult =
+            [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
       }
     } else {
       NSLog(@"cordova.disusered.open - Missing URL argument");
@@ -65,7 +73,7 @@
 #pragma - QLPreviewControllerDataSource Protocol
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:
-                 (QLPreviewController *)controller {
+        (QLPreviewController *)controller {
   return 1;
 }
 
