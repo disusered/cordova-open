@@ -36,6 +36,16 @@
 
         self.fileUrl = url;
 
+        // background
+        [[UINavigationBar appearance] setTranslucent:NO];
+        [[UINavigationBar appearance] setBarTintColor:[UIColor greenColor]];
+        // buttons
+        [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
+        // title
+        [[UINavigationBar appearance] setTitleTextAttributes:@{
+          NSForegroundColorAttributeName : [UIColor blueColor]
+        }];
+
         QLPreviewController *previewCtrl = [[QLPreviewController alloc] init];
         previewCtrl.delegate = self;
         previewCtrl.dataSource = self;
