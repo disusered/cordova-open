@@ -12,6 +12,13 @@
 
 #import "Open.h"
 
+@implementation PortraitOnlyQLPreviewController
+- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
+{
+  return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
+@end
+
 @implementation Open
 
 /**
@@ -36,7 +43,7 @@
 
         self.fileUrl = url;
 
-        QLPreviewController *previewCtrl = [[QLPreviewController alloc] init];
+        QLPreviewController *previewCtrl = [[PortraitOnlyQLPreviewController alloc] init];
         previewCtrl.delegate = self;
         previewCtrl.dataSource = self;
           
