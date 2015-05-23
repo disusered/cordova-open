@@ -23,3 +23,7 @@
 @property(readonly) NSURL *previewItemURL;
 
 @end
+
+@interface PortraitOnlyPreviewController : QLPreviewController {
+}
+@end
