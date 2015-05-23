@@ -24,6 +24,6 @@
 
 @end
 
-@interface PortraitOnlyPreviewController : QLPreviewController {
+@interface PortraitOnlyQLPreviewController : QLPreviewController {
 }
 @end
