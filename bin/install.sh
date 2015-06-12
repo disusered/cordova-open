@@ -8,4 +8,4 @@ cd $HOME/testApp
 cordova build android
 
 # Install APK
-adb install platforms/android/ant-build/MainActivity-debug.apk
+adb install platforms/android/build/outputs/apk/android-debug.apk
