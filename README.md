@@ -1,4 +1,4 @@
-open
+cordova-open
 ====
 
 [![Build Status](https://travis-ci.org/disusered/cordova-open.svg)](https://travis-ci.org/disusered/cordova-open) [![Code Climate](https://codeclimate.com/github/disusered/cordova-open/badges/gpa.svg)](https://codeclimate.com/github/disusered/cordova-open) 
@@ -10,7 +10,7 @@ open
 ## Install
 
 ```bash
-$ cordova plugin add com.disusered.open
+$ cordova plugin add cordova-open
 ```
 
 ## Usage
