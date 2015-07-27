@@ -65,6 +65,12 @@ exports.defineManualTests = function(contentEl, createActionButton) {
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.xyz');
   }, 'open-file');
 
+  createActionButton('Open from intranet', function() {
+    cordova.plugins.disusered.open(
+      'http://127.0.0.1:8080/plugin.xml',
+      success, error);
+  }, 'open-file');
+
   createActionButton('Open Image', function() {
     cordova.plugins.disusered.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.png',
