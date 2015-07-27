@@ -19,6 +19,11 @@
     "no-use-before-define": [1, "nofunc"],
     "new-cap": [2, {
       "capIsNewExceptions": []
+    }],
+    "valid-jsdoc": [2, {
+      "prefer": {
+        "return": "returns"
+      }
     }]
   }
 }
