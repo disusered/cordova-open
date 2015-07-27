@@ -1,7 +1,11 @@
 exports.defineAutoTests = function() {
+
   describe('disusered plugin (cordova.plugins.disusered)', function() {
     it('should exist', function() {
       expect(window.cordova.plugins.disusered).toBeDefined();
+    });
+    it('should pass a test', function() {
+      expect(window).toBeDefined();
     });
   });
 
@@ -59,6 +63,12 @@ exports.defineManualTests = function(contentEl, createActionButton) {
     addEventListeners();
     cordova.plugins.disusered.open(
       'https://raw.githubusercontent.com/disusered/cordova-open/test/test.xyz');
+  }, 'open-file');
+
+  createActionButton('Open from intranet', function() {
+    cordova.plugins.disusered.open(
+      'http://127.0.0.1:8080/plugin.xml',
+      success, error);
   }, 'open-file');
 
   createActionButton('Open Image', function() {
