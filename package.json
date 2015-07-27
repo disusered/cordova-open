@@ -9,6 +9,10 @@
       "ios"
     ]
   },
+  "scripts": {
+    "lint": "gulp lint",
+    "watch": "gulp watch"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/disusered/cordova-open.git"
@@ -32,5 +36,10 @@
   "bugs": {
     "url": "https://github.com/disusered/cordova-open/issues"
   },
-  "homepage": "https://github.com/disusered/cordova-open"
+  "homepage": "https://github.com/disusered/cordova-open",
+  "devDependencies": {
+    "eslint": "^0.24.1",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^0.15.0"
+  }
 }
