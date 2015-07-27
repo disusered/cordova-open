@@ -1,7 +1,11 @@
 exports.defineAutoTests = function() {
+
   describe('disusered plugin (cordova.plugins.disusered)', function() {
     it('should exist', function() {
       expect(window.cordova.plugins.disusered).toBeDefined();
+    });
+    it('should pass a test', function() {
+      expect(window).toBeDefined();
     });
   });
 
