@@ -11,10 +11,11 @@ var exec = require('cordova/exec');
 /**
  * open
  *
- * @param {String} args File URI
+ * @param {String} uri File URI
  * @param {Function} success Success callback
  * @param {Function} error Failure callback
  * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
+ * @returns {void}
  */
 exports.open = function(uri, success, error, trustAllCertificates) {
   if (!uri || arguments.length === 0) { return false; }
@@ -36,6 +37,7 @@ exports.open = function(uri, success, error, trustAllCertificates) {
  * @param {Function} success Success callback
  * @param {Function} error Failure callback
  * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
+ * @returns {void}
  */
 function downloadAndOpen(url, success, error, trustAllCertificates) {
   var ft = new FileTransfer();
@@ -66,7 +68,7 @@ function downloadAndOpen(url, success, error, trustAllCertificates) {
  *
  * @param {String} path File URI
  * @param {Function} callback Callback
- * @return {String} File URI
+ * @returns {String} File URI
  */
 function onSuccess(path, callback) {
   fire('success', path);
@@ -80,7 +82,7 @@ function onSuccess(path, callback) {
  * onError
  *
  * @param {Function} callback Callback
- * @return {Number} Error Code
+ * @returns {Number} Error Code
  */
 function onError(callback) {
   var code = (arguments.length > 1) ? arguments[1] : 0;
@@ -96,6 +98,7 @@ function onError(callback) {
  *
  * @param {String} event Event name
  * @param {String} data Success or error data
+ * @returns {void}
  */
 function fire(event, data) {
   var channel = require('cordova/channel');

@@ -1,0 +1,29 @@
+{
+  "env": {
+    "node": true,
+    "es6": false,
+    "browser": true,
+    "jasmine": true
+  },
+  "globals": {
+    "cordova": true,
+    "FileTransfer": true
+  },
+  "rules": {
+    "strict": [2, "never"],
+    "quotes": [2, "single"],
+    "semi": [2, "always"],
+    "curly": [2, "multi-line"],
+    "no-unused-vars": [2, {"vars": "all", "args": "none"}],
+    "no-underscore-dangle": 0,
+    "no-use-before-define": [1, "nofunc"],
+    "new-cap": [2, {
+      "capIsNewExceptions": []
+    }],
+    "valid-jsdoc": [2, {
+      "prefer": {
+        "return": "returns"
+      }
+    }]
+  }
+}
