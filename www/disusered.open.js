@@ -71,7 +71,7 @@ function downloadAndOpen(url, success, error, trustAllCertificates) {
  */
 function onSuccess(path, callback, type) {
   if(type !== 'resume') {
-      fire('success' , path);
+      fire('open.success' , path);
       if (typeof callback === 'function') {
         callback(path);
       }
@@ -89,7 +89,7 @@ function onSuccess(path, callback, type) {
  */
 function onError(callback) {
   var code = (arguments.length > 1) ? arguments[1] : 0;
-  fire('error', code);
+  fire('open.error', code);
   if (typeof callback === 'function') {
     callback(code);
   }
@@ -109,9 +109,8 @@ function fire(event, data) {
   var payload = {};
 
   channel.onCordovaReady.subscribe(function() {
-    var name = 'open.' + event;
     var prop = (event === 'error') ? event : 'data';
     payload[prop] = data;
-    cordova.fireDocumentEvent(name, payload);
+    cordova.fireDocumentEvent(event, payload);
   });
 }
