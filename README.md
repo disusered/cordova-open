@@ -47,8 +47,8 @@ cordova.plugins.disusered.open(file, success, error, trustAllCertificates)
 * __trustAllCertificates:__ Optional, trusts any certificate when the connection is done over HTTPS.
 
 #### Events:
-* __pause:__ Opening files emits Cordova's pause event
-* __resume:__ Closing the file emits Cordova's resume event
+* __pause:__ Opening files emits Cordova's pause event (Android only)
+* __resume:__ Closing the file emits Cordova's resume event (new: also triggered under iOS now)
 * __open.success:__ File is found and can be opened
 * __open.error:__ File not found, or no file handler is installed
 
