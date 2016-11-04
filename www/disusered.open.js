@@ -69,10 +69,14 @@ function downloadAndOpen(url, success, error, trustAllCertificates) {
  * @param {Function} callback Callback
  * @returns {String} File URI
  */
-function onSuccess(path, callback) {
-  fire('success', path);
-  if (typeof callback === 'function') {
-    callback(path);
+function onSuccess(path, callback, type) {
+  if(type !== 'resume') {
+      fire('success' , path);
+      if (typeof callback === 'function') {
+        callback(path);
+      }
+  } else {
+      fire('resume' , path);
   }
   return path;
 }
