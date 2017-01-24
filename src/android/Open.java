@@ -66,15 +66,10 @@ public class Open extends CordovaPlugin {
                 String mime = getMimeType(path);
                 Intent fileIntent = new Intent(Intent.ACTION_VIEW);
 
-                String curDir = cordova.getActivity().getApplicationContext().getFilesDir().getAbsolutePath();
-                System.out.println(curDir);
-
                 // see http://stackoverflow.com/questions/25592206/how-to-get-your-context-in-your-phonegap-plugin
                 if (Build.VERSION.SDK_INT >= 24) {
                     Context context = cordova.getActivity().getApplicationContext();
                     File imageFile = new File(uri.getPath());
-                    long fileSize = imageFile.length();
-                    System.out.println("File size is " + fileSize);
                     Uri photoURI = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", imageFile);
                     fileIntent.setDataAndTypeAndNormalize(photoURI, mime);
                     // see http://stackoverflow.com/questions/39450748/intent-shows-a-blank-image
