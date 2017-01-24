@@ -12,3 +12,7 @@
 @property (nonatomic, copy) NSString* callbackId;
 
 @end
+
+@interface PortraitOnlyQLPreviewController : QLPreviewController {
+}
+@end
