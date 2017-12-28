@@ -73,16 +73,17 @@ function downloadAndOpen(url, success, error, progress, trustAllCertificates) {
  *
  * @param {String} path File URI
  * @param {Function} callback Callback
+ * @param {type} type of success event
  * @returns {String} File URI
  */
 function onSuccess(path, callback, type) {
   if(type !== 'resume') {
-      fire('open.success' , path);
+      fire('open.success', path);
       if (typeof callback === 'function') {
         callback(path);
       }
   } else {
-      fire('resume' , path);
+      fire('resume', path);
   }
   return path;
 }
