@@ -54,7 +54,7 @@ function downloadAndOpen(url, success, error, progress, trustAllCertificates) {
   }
 
   if (progress && typeof progress === 'function') {
-    ft.progress = progress;
+    ft.onprogress = progress;
   }
 
   ft.download(url, path,
