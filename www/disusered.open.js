@@ -14,14 +14,15 @@ var exec = require('cordova/exec');
  * @param {String} uri File URI
  * @param {Function} success Success callback
  * @param {Function} error Failure callback
+ * @param {Function} progress Callback for download progress reporting
  * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
  * @returns {void}
  */
-exports.open = function(uri, success, error, trustAllCertificates) {
+exports.open = function(uri, success, error, progress, trustAllCertificates) {
   if (!uri || arguments.length === 0) { return false; }
 
   if (uri.match('http')) {
-    downloadAndOpen(uri, success, error, trustAllCertificates);
+    downloadAndOpen(uri, success, error, progress, trustAllCertificates);
   } else {
     uri = encodeURI(uri);
     exec(onSuccess.bind(this, uri, success),
@@ -35,10 +36,11 @@ exports.open = function(uri, success, error, trustAllCertificates) {
  * @param {String} url File URI
  * @param {Function} success Success callback
  * @param {Function} error Failure callback
+ * @param {Function} progress Callback for download progress reporting
  * @param {Boolean} trustAllCertificates Trusts any certificate when the connection is done over HTTPS.
  * @returns {void}
  */
-function downloadAndOpen(url, success, error, trustAllCertificates) {
+function downloadAndOpen(url, success, error, progress, trustAllCertificates) {
   var ft = new FileTransfer();
   var ios = cordova.file.cacheDirectory;
   var ext = cordova.file.externalCacheDirectory;
@@ -49,6 +51,10 @@ function downloadAndOpen(url, success, error, trustAllCertificates) {
   if (typeof trustAllCertificates !== 'boolean') {
     // Defaults to false
     trustAllCertificates = false;
+  }
+
+  if (progress && typeof progress === 'function') {
+    ft.progress = progress;
   }
 
   ft.download(url, path,
