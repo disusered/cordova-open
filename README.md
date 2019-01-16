@@ -30,20 +30,38 @@ function error(code) {
   }
 }
 
-open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error);
+function progress(progressEvent) {
+  if (progressEvent.lengthComputable) {
+    var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+    // update UI with status, for example:
+    // statusDom.innerHTML = perc + "% loaded...";
+  } else {
+    // download does not offer a length... just show dots
+    /*
+       if(statusDom.innerHTML == "") {
+       statusDom.innerHTML = "Loading";
+       } else {
+       statusDom.innerHTML += ".";
+       }
+     */
+  }
+};
+
+open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error, progress);
 ```
 
 ## API
 The plugin exposes the following methods:
 
 ```javascript
-cordova.plugins.disusered.open(file, success, error, trustAllCertificates)
+cordova.plugins.disusered.open(file, success, error, progress, trustAllCertificates)
 ```
 
 #### Parameters:
 * __file:__ A string representing a URI
 * __success:__ Optional success callback
 * __error:__ Optional error callback
+* __progress:__ Optional progress callback
 * __trustAllCertificates:__ Optional, trusts any certificate when the connection is done over HTTPS.
 
 #### Events:
