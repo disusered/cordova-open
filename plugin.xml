@@ -16,12 +16,19 @@
       </feature>
     </config-file>
     <config-file parent="/manifest/application" target="AndroidManifest.xml">
-        <provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.provider" android:exported="false" android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths"/>
+        <provider 
+          android:name="com.disusered.cordova.open.FileProvider" 
+          android:authorities="${applicationId}.provider" 
+          android:exported="false" 
+          android:grantUriPermissions="true">
+            <meta-data 
+              android:name="android.support.FILE_PROVIDER_PATHS" 
+              android:resource="@xml/open_provider_paths"/>
         </provider>
     </config-file>
     <source-file src="src/android/Open.java" target-dir="src/com/disusered"/>
-    <source-file src="src/android/provider_paths.xml" target-dir="res/xml"/>
+    <source-file src="src/android/FileProvider.java" target-dir="src/com/disusered"/>
+    <source-file src="src/android/open_provider_paths.xml" target-dir="res/xml"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
