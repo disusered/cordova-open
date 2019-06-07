@@ -10,6 +10,8 @@
     <merges target="cordova.plugins.disusered"/>
   </js-module>
   <platform name="android">
+    <preference name="ANDROID_SUPPORT_V4_VERSION" default="27.+"/>
+    <framework src="com.android.support:support-v4:$ANDROID_SUPPORT_V4_VERSION"/>
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="Open">
         <param name="android-package" value="com.disusered.Open"/>
