@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-open" version="1.1.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-open" version="1.2.0">
   <name>Open</name>
   <description>Open audio, video, images and more with applications installed on the user's device</description>
   <license>MIT</license>
@@ -10,8 +10,10 @@
     <merges target="cordova.plugins.disusered"/>
   </js-module>
   <platform name="android">
-    <preference name="ANDROID_SUPPORT_V4_VERSION" default="27.+"/>
-    <framework src="com.android.support:support-v4:$ANDROID_SUPPORT_V4_VERSION"/>
+
+    <preference name="ANDROIDX_CORE_VERSION" default="1.6.+"/>
+    <framework src="androidx.core:core:$ANDROIDX_CORE_VERSION" />
+
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="Open">
         <param name="android-package" value="com.disusered.Open"/>
