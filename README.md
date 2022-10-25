@@ -1,7 +1,6 @@
-cordova-open
-====
+# cordova-open
 
-[![Build Status](https://travis-ci.org/disusered/cordova-open.svg)](https://travis-ci.org/disusered/cordova-open) [![Code Climate](https://codeclimate.com/github/disusered/cordova-open/badges/gpa.svg)](https://codeclimate.com/github/disusered/cordova-open) 
+[![Build Status](https://travis-ci.org/disusered/cordova-open.svg)](https://travis-ci.org/disusered/cordova-open) [![Code Climate](https://codeclimate.com/github/disusered/cordova-open/badges/gpa.svg)](https://codeclimate.com/github/disusered/cordova-open)
 
 > Open audio, video, images and more with applications installed on the user's device.
 
@@ -9,9 +8,15 @@ cordova-open
 
 ## Install
 
+This version or the Cordova Open Plugin must be installed from the Github Repo listed below.
+
 ```bash
-$ cordova plugin add cordova-open
+$ cordova plugin add https://github.com/remoorejr/cordova-open.git
 ```
+
+## Features
+
+- This version uses the newer AndroidX libraries for compatibility with the latest versions of Android.
 
 ## Usage
 
@@ -19,20 +24,20 @@ $ cordova plugin add cordova-open
 var open = cordova.plugins.disusered.open;
 
 function success() {
-  console.log('Success');
+  console.log("Success");
 }
 
 function error(code) {
   if (code === 1) {
-    console.log('No file handler found');
+    console.log("No file handler found");
   } else {
-    console.log('Undefined error');
+    console.log("Undefined error");
   }
 }
 
 function progress(progressEvent) {
   if (progressEvent.lengthComputable) {
-    var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+    var perc = Math.floor((progressEvent.loaded / progressEvent.total) * 100);
     // update UI with status, for example:
     // statusDom.innerHTML = perc + "% loaded...";
   } else {
@@ -45,30 +50,44 @@ function progress(progressEvent) {
        }
      */
   }
-};
+}
 
-open('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', success, error, progress);
+open(
+  "file:/storage/sdcard/DCIM/Camera/1404177327783.jpg",
+  success,
+  error,
+  progress
+);
 ```
 
 ## API
+
 The plugin exposes the following methods:
 
 ```javascript
-cordova.plugins.disusered.open(file, success, error, progress, trustAllCertificates)
+cordova.plugins.disusered.open(
+  file,
+  success,
+  error,
+  progress,
+  trustAllCertificates
+);
 ```
 
 #### Parameters:
-* __file:__ A string representing a URI
-* __success:__ Optional success callback
-* __error:__ Optional error callback
-* __progress:__ Optional progress callback
-* __trustAllCertificates:__ Optional, trusts any certificate when the connection is done over HTTPS.
+
+- **file:** A string representing a URI
+- **success:** Optional success callback
+- **error:** Optional error callback
+- **progress:** Optional progress callback
+- **trustAllCertificates:** Optional, trusts any certificate when the connection is done over HTTPS.
 
 #### Events:
-* __pause:__ Opening files emits Cordova's pause event (Android only)
-* __resume:__ Closing the file emits Cordova's resume event
-* __open.success:__ File is found and can be opened
-* __open.error:__ File not found, or no file handler is installed
+
+- **pause:** Opening files emits Cordova's pause event (Android only)
+- **resume:** Closing the file emits Cordova's resume event
+- **open.success:** File is found and can be opened
+- **open.error:** File not found, or no file handler is installed
 
 ## License
 
