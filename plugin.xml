@@ -46,5 +46,5 @@
     <header-file src="src/ios/Open.h"/>
   </platform>
   <dependency id="cordova-plugin-file"/>
-  <dependency id="cordova-plugin-file-transfer"/>
+  <dependency id="cordova-plugin-file-transfer" url="https://github.com/remoorejr/cordova-plugin-file-transfer" />
 </plugin>
