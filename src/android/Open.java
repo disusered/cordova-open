@@ -9,7 +9,7 @@ import org.json.JSONException;
 import android.content.Context;
 import android.net.Uri;
 import android.content.Intent;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 import android.webkit.MimeTypeMap;
 import android.content.ActivityNotFoundException;
 import android.os.Build;
